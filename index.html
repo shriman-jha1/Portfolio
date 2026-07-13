@@ -824,7 +824,7 @@ const projects = [
   title:'Muscle Fatigue Detection with Ultrasound & EMG',
   role:'Echogenicity Lead',
   thumb:'es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image3.jpg',
-  short:'A semester-long ES227 Medical Device Design team project: detecting muscle fatigue non-invasively with sparse A-mode ultrasound and EMG, toward a wearable. I led the echogenicity analysis — my first time with biomedical signals and data acquisition.',
+  short:'A semester-long ES227 Graduate Level Medical Device Design team project for detecting muscle fatigue non-invasively with sparse A-mode ultrasound and EMG, toward a wearable. I led the echogenicity analysis and was my first time with biomedical signals and data acquisition.',
   html:()=>`
   <section><div class="container">
     <span class="back-link reveal" onclick="go('home','projects')">All projects</span>
@@ -835,17 +835,17 @@ const projects = [
     ${skillsBar('Echogenicity analysis','Signal processing','Data acquisition','A-mode ultrasound','sEMG','MATLAB','Python')}
 
     <div class="prose full reveal" style="margin-top:36px">
-      <p>This was a <strong>semester-long team project</strong> for ES227 (Medical Device Design), built around a deceptively hard question: can you measure how fatigued a specific muscle is, objectively, without a lab full of equipment? Muscle fatigue matters everywhere from athletic training to rehabilitation to ergonomics — a fatigued muscle loses force capacity and becomes more injury-prone — but the usual signs (perceived effort, technique breakdown, rep failure) don't reveal the local mechanical state of the muscle itself.</p>
-      <p>Our four-person team set out to detect fatigue in the <strong>biceps brachii non-invasively</strong>, building the algorithmic foundation for a future <strong>wearable device that pairs sparse A-mode ultrasound with EMG</strong>. Rather than claim a finished product, we developed and validated the signal-processing pipelines such a device would run, checking them against a dynamometer as ground truth.</p>
-      <p>It was also my <strong>first time working with biomedical systems, physiological signals, and data acquisition</strong> — a completely different world from the rockets and satellites I'd built before. We designed and built the whole thing ourselves over one semester, so it taught me as much about <strong>project design and holding a strict timeline</strong> as it did about signal processing.</p>
+      <p>This was a semester-long team project for ES227 (Medical Device Design) - a graduate level engineering class primarly designed for bioengineering students, built around if we could measure how fatigued a specific muscle is, objectively, without a lab full of equipment and more from a wearable technology? Muscle fatigue matters everywhere from athletic training to rehabilitation to ergonomics and can be defined as when muscles loses force capacity and becomes more injury-prone. However, the usual signs (perceived effort, technique breakdown, rep failure) don't reveal the local mechanical state of the muscle itself.</p>
+      <p>Our four-person team set out to detect fatigue in the biceps brachii non-invasively, building the algorithmic foundation for a future wearable device that pairs sparse A-mode ultrasound with EMG since these technologies already exist. Rather than claim a finished product, we developed and validated the signal-processing pipelines such a device would run, checking them against a dynamometer as ground truth.</p>
+      <p>It was also my first time working with biomedical systems, physiological signals, and data acquisition. We designed and built the whole thing ourselves over one semester, so it taught me as much about project design and holding a strict timeline as it did about signal processing.</p>
     </div>
 
     <div class="doc-links reveal">
       <a class="doc-card" href="es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx.pdf" target="_blank" rel="noopener">
-        <b>Final Report</b><span>Full write-up — methods, analysis, and results (PDF)</span>
+        <b>Final Report</b><span>Please read for further details.</span>
       </a>
       <a class="doc-card" href="es227/%5BES227%5D%20Final%20Presentation%20Outline.pptx" target="_blank" rel="noopener">
-        <b>Final Presentation</b><span>Project presentation deck (PPTX)</span>
+        <b>Final Presentation</b><span>Final project presentation deck (PPTX)</span>
       </a>
     </div>
 
@@ -853,24 +853,24 @@ const projects = [
       <div class="txt prose">
         <div class="eyebrow">The problem</div>
         <h2 class="big" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">Why fatigue is hard to measure</h2>
-        <p>Fatigue is a mix of <strong>central</strong> effects (reduced neural drive) and <strong>peripheral</strong> effects inside the muscle: metabolite build-up, impaired calcium handling, cross-bridge dysfunction, and reduced stiffness. A fresh muscle contracts quickly and consistently; a fatigued one responds more slowly and its tissue behaves differently.</p>
-        <p>Every existing tool captures only part of that. Surface EMG reads electrical activation but is thrown off by sweat, electrode placement, and crosstalk. NIRS gives metabolic context but limited depth. Force/torque is a clean ground truth but needs a benchtop dynamometer. B-mode ultrasound shows rich structure but is bulky and compute-heavy. We chose <strong>sparse A-mode ultrasound</strong> — a one-dimensional depth signal — as a lower-data, wearable-friendly middle ground, paired with EMG.</p>
+        <p>Fatigue is a mix of central effects (reduced neural drive) and peripheral effects inside the muscle: metabolite build-up, impaired calcium handling, cross-bridge dysfunction, and reduced stiffness. A fresh muscle contracts quickly and consistently; a fatigued one responds more slowly and its tissue behaves differently.</p>
+        <p>Every existing tool captures only part of that. Surface EMG reads electrical activation but is thrown off by sweat, electrode placement, and crosstalk. NIRS gives metabolic context but limited depth. Force/torque is a clean ground truth but needs a benchtop dynamometer. B-mode ultrasound shows rich structure but is bulky and compute-heavy. We chose sparse A-mode ultrasound, a one-dimensional depth signal, as a lower-data, wearable-friendly middle ground, paired with EMG.</p>
       </div>
-      <div class="med">${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image4.png','Pre-fatigue vs. post-fatigue muscle response — altered calcium handling and cross-bridge behavior')}</div>
+      <div class="med">${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image4.png','Pre-fatigue vs. post-fatigue muscle response: altered calcium handling and cross-bridge behavior')}</div>
     </div>
 
     <div class="row flip reveal">
       <div class="txt prose">
         <div class="eyebrow">The approach</div>
         <h2 class="big" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">Two signals, one ground truth</h2>
-        <p>We pulled two complementary fatigue features from the same muscle. <strong>Echogenicity</strong> tracks how the ultrasound backscatter inside a muscle region of interest changes as the muscle fatigues. <strong>Electromechanical delay (EMD)</strong> measures the time lag between electrical activation (EMG) and the mechanical response the ultrasound detects — a delay that grows as muscle tires.</p>
+        <p>We pulled two complementary fatigue features from the same muscle. <strong>Echogenicity</strong> tracks how the ultrasound backscatter inside a muscle region of interest changes as the muscle fatigues. <strong>Electromechanical delay (EMD)</strong> measures the time lag between electrical activation (EMG) and the mechanical response the ultrasound detects This delay grows as muscle tires.</p>
         <p>Both were validated against a <strong>dynamometer</strong>. We ran a standardized protocol of repeated maximum voluntary isometric contractions (MVICs) and fatiguing exercise while recording synchronized ultrasound (Optel), EMG (Delsys), and torque (ADInstruments PowerLab), all aligned to a hardware trigger so activation, tissue response, and force output line up in the same window.</p>
       </div>
-      <div class="med">${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image7.png','Test protocol on the HUMAC dynamometer — rest, submaximal holds, a fatiguing block, and MVIC windows, repeated four times')}</div>
+      <div class="med">${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image7.png','Test protocol on the HUMAC dynamometer which includea rest, submaximal holds, a fatiguing block, and MVIC windows, repeated four times')}</div>
     </div>
 
     <div class="gallery reveal">
-      ${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image2.png','Instrumentation — Delsys EMG, Optel ultrasound, and the ADInstruments PowerLab/dynamometer, all synchronized on a shared hardware trigger')}
+      ${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image2.png','Instrumentation: Delsys EMG, Optel ultrasound, and the ADInstruments PowerLab/dynamometer, all synchronized on a shared hardware trigger')}
     </div>
 
     ${WAVE('#efeeea')}
@@ -878,42 +878,42 @@ const projects = [
     <div class="prose full reveal" style="margin:20px 0 10px">
       <div class="eyebrow">My Contribution</div>
       <h2 class="big" style="font-size:clamp(1.9rem,4vw,3rem)">Echogenicity</h2>
-      <p><strong>Echogenicity</strong> is how strongly tissue echoes ultrasound back to the probe — how "bright" it reads. Muscle and its connective tissue scatter sound differently, and as a muscle fatigues, that backscatter within a fixed region of interest (ROI) shifts. That makes the <strong>average ultrasound intensity inside the ROI a non-invasive proxy</strong> for the muscle's changing mechanical state.</p>
+      <p><strong>Echogenicity</strong> is how strongly tissue echoes ultrasound back to the probe aka how "bright" it reads. Muscle and its connective tissue scatter sound differently, and as a muscle fatigues, that backscatter within a fixed region of interest (ROI) shifts. That makes the average ultrasound intensity inside the ROI a non-invasive proxy for the muscle's changing mechanical state.</p>
     </div>
 
     <div class="row reveal">
       <div class="txt prose">
         <h2 class="big" style="font-size:1.8rem">Building the pipeline</h2>
-        <p>I <strong>developed the echogenicity pipeline end to end</strong>. For each trial I selected the time window around the relevant MVIC or rest period, converted the raw RF ultrasound signal into an envelope / M-mode representation, and defined a consistent ROI in the biceps. The tricky part is the ROI: I used a <strong>muscle boundary tracking algorithm (MBTA)</strong> to find the lower biceps boundary and an assumed superficial boundary around 5&nbsp;mm, so the ROI followed the actual muscle rather than a fixed box.</p>
+        <p>I developed the echogenicity pipeline end to end. For each trial, I selected the time window around the relevant MVIC or rest period, converted the raw RF ultrasound signal into an envelope / M-mode representation, and defined a consistent ROI in the biceps. The tricky part is the ROI. I used a muscle boundary tracking algorithm (MBTA) to find the lower biceps boundary and an assumed superficial boundary around 5&nbsp;mm, so the ROI followed the actual muscle rather than a fixed box.</p>
         <p>From there I averaged the signal intensity inside the ROI and compared it across trials, plotting mean ROI echogenicity against MVIC and trial number to see whether the ultrasound signal tracked the measured loss of force.</p>
       </div>
-      <div class="med">${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image5.png','B-mode and M-mode reference — biceps, humerus shadow, the A-mode sampling line, and the MBTA-tracked muscle boundary')}</div>
+      <div class="med">${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image5.png','B-mode and M-mode reference for biceps, humerus shadow, the A-mode sampling line, and the MBTA-tracked muscle boundary')}</div>
     </div>
 
     <div class="row flip reveal">
       <div class="txt prose">
         <h2 class="big" style="font-size:1.8rem">The result</h2>
-        <p>Across the fatiguing trials, <strong>mean ROI echogenicity rose as MVIC fell</strong> — exactly the direction you'd expect if the ultrasound signal reflects fatigue-related decline in force capacity. A polynomial fit to the pooled data reached an <strong>adjusted R&sup2; of 0.9197</strong>, a strong relationship for a first-pass, non-invasive measure.</p>
+        <p>Across the fatiguing trials, mean ROI echogenicity rose as MVIC fellwhich is exactly the direction you'd expect if the ultrasound signal reflects fatigue-related decline in force capacity. A polynomial fit to the pooled data reached an <strong>adjusted R&sup2; of 0.9197</strong>, a strong relationship for a first-pass, non-invasive measure.</p>
         <p>That's the core evidence that echogenicity can serve as a usable fatigue feature, and it's the piece I owned from raw signal to final plot.</p>
       </div>
-      <div class="med">${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image3.jpg','Mean ROI echogenicity vs. MVIC — as MVIC falls, echogenicity rises; polynomial fit, adjusted R² = 0.9197')}</div>
+      <div class="med">${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image3.jpg','Mean ROI echogenicity vs. MVIC: as MVIC falls, echogenicity rises; polynomial fit, adjusted R² = 0.9197')}</div>
     </div>
 
     <div class="gallery reveal">
-      ${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image9.jpg','Echogenicity over trials in the MBTA-tracked ROI — mean ROI intensity climbs from 8.6 mV to 12.0 mV as the muscle fatigues')}
+      ${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image9.jpg','Echogenicity over trials in the MBTA-tracked ROI: mean ROI intensity climbs from 8.6 mV to 12.0 mV as the muscle fatigues')}
     </div>
 
     <div class="prose full reveal" style="margin-top:30px">
       <h2 class="big" style="font-size:1.8rem;margin-bottom:14px">Working across the team</h2>
-      <p>Beyond echogenicity I worked on the project as a whole — helping run the experimental setup and data-collection sessions, and supporting the <strong>electromechanical delay</strong> side, where the challenge is synchronizing torque, EMG, and ultrasound and detecting each signal's onset cleanly. The EMD results were more mixed: two of three subjects followed the expected within-subject trend, while one reversed, which we traced to boundary-tracking error in the ultrasound onset.</p>
-      <p>The honest takeaway we wrote up is that this is a <strong>validated algorithmic foundation, not a finished clinical device</strong>. Its robustness still depends on synchronization, boundary tracking, ROI selection, sensor placement, and subject-to-subject variation — all things a real wearable would have to nail down with more participants and a proper fixation and placement guide.</p>
-      <p>Learning to work with a biomedical DAQ chain for the first time — aligning sensors to a trigger, taming noisy physiological signals, and building an analysis pipeline I could actually trust — was the most valuable part of the project for me. Full methodology and results are in the report and presentation linked above.</p>
+      <p>Beyond echogenicity I worked on the project as a whole which included helping run the experimental setup and data-collection sessions, and supporting the electromechanical delay side, where the challenge is synchronizing torque, EMG, and ultrasound and detecting each signal's onset cleanly. The EMD results were more mixed: two of three subjects followed the expected within-subject trend, while one reversed, which we traced to boundary-tracking error in the ultrasound onset.</p>
+      <p>The honest takeaway we wrote up is that this is a validated algorithmic foundation, not a finished clinical device. Its robustness still depends on synchronization, boundary tracking, ROI selection, sensor placement, and subject-to-subject variation — all things a real wearable would have to nail down with more participants and a proper fixation and placement guide.</p>
+      <p>Learning to work with medical anatomy, biomedical DAQ chain for the first time, aligning sensors to a trigger, taming noisy physiological signals, and building an analysis pipeline I could actually trust was the most valuable part of the project for me. Full methodology and results are in the report and presentation linked above.</p>
     </div>
 
     <div class="gallery reveal">
-      ${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image8.png','EMD pipeline — synchronize torque, EMG, and ultrasound, detect each onset, then visualize the aligned windows')}
-      ${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image1.png','EMD across trials — torque, EMG, and A-mode ultrasound aligned to the trigger for onset detection')}
-      ${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image6.png','EMD across subjects — EMG-to-torque vs. EMG-to-ultrasound delay against %MVIC; two of three followed the expected trend')}
+      ${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image8.png','EMD pipeline')}
+      ${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image1.png','EMD across trials')}
+      ${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image6.png','EMD across subjects')}
     </div>
 
     ${nextProj('muscle-fatigue')}
