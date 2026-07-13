@@ -1,0 +1,187 @@
+/* ===== Base colours & typography ===== */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #ffffff;   /* was black */
+    color: #0f1120;              /* dark ink, high contrast */
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Times New Roman", Times, serif; /* more legible */
+}
+
+/* Logo frame looks harsh on light — soften it */
+.logo img {
+    height: 50px;
+    border: 1px solid #e6e6e9;   /* was 2px white */
+    margin-left: 20px;
+    border-radius: 6px;
+}
+
+/* ===== Header / nav on light ===== */
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;          /* a touch tighter */
+    background: rgba(255,255,255,0.85);   /* add a light glassy backdrop */
+    backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid #eaeaf0;
+}
+
+.nav-link {
+    color: #0f1120;              /* dark text */
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 700;            /* stronger weight for clarity */
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.25s;
+}
+
+.nav-link::after {
+    background-color: #b22234;   /* refined crimson underline */
+}
+
+/* Active/hover state keeps your brand accent */
+.nav-link:hover,
+.nav-link.active {
+    color: #b22234;              /* was #ff8791 */
+}
+
+/* ===== Hero video overlay tuned for light ===== */
+.overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(255,255,255,0.55);   /* was dark 0.5; flip to light mist */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Headings: keep your Atomic Age vibe but reduce heaviness */
+.hero-content h2 {
+    font-size: 1.25rem;
+    margin-bottom: 6px;
+    color: #3d4250;
+    font-weight: 600;
+}
+.hero-content h1 {
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    font-weight: 800;
+    color: #0f1120;
+}
+
+.name-link {
+    color: #0f1120;
+}
+.name-link:hover,
+.name-link:active {
+    color: #b22234;
+}
+
+/* Scroll arrows on light */
+.arrow-link {
+    font-size: 2rem;
+    color: #0f1120;
+    text-decoration: none;
+    transition: color 0.25s, transform 0.25s;
+}
+.arrow-container:hover .arrow-link { color: #b22234; }
+
+/* ===== About section on light ===== */
+.about-section {
+    padding: 60px 20px;
+    text-align: justify;
+    background: #ffffff;
+}
+.about-content p {
+    color: #3d4250;              /* comfortable paragraph colour */
+}
+.about-image {
+    width: 40%;
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+}
+.secondary-color {
+    color: #b22234;              /* crimson accent */
+}
+
+/* ===== Footer on light ===== */
+.footer {
+    background-color: #f7f8fb;   /* light grey */
+    color: #0f1120;
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 1px solid #eaeaf0;
+}
+.footer-link { color: #0f1120; }
+.footer-link:hover { color: #b22234; }
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #6a7083;
+}
+
+/* ===== Contact page cards on light ===== */
+.contact-item {
+    background: #ffffff;         /* was translucent white on black */
+    border: 1px solid #ececf2;
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+}
+.contact-link { color: #0f1120; }
+.contact-link:hover { color: #b22234; }
+
+/* Contact form controls on light */
+.contact-form input,
+.contact-form textarea {
+    background: #ffffff;
+    color: #0f1120;
+    border: 1px solid #e6e6ef;
+    border-radius: 8px;
+}
+.contact-form input::placeholder,
+.contact-form textarea::placeholder { color: #9aa1b2; }
+
+.contact-form button {
+    background-color: #b22234;   /* crimson button */
+    color: #ffffff;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 18px;
+    font-weight: 700;
+}
+.contact-form button:hover {
+    filter: brightness(0.95);
+}
+.contact-form button:active {
+    filter: brightness(0.9);
+}
+.contact-form button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+/* Success message */
+.success-message {
+    color: #28a745;              /* green success */
+    margin-top: 10px;
+}
+/* Error message */
+.error-message {
+    color: #dc3545;              /* red error */
+    margin-top: 10px;
+}
+/* Loading spinner */
+.loading-spinner {
+    border: 4px solid #f3f3f3;   /* Light grey */
+    border-top: 4px solid #b22234; /* Crimson */
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+}

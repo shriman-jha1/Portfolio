@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Shriman Jha</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atomic+Age&display=swap" rel="stylesheet">
+</head>
+<body class="contact-page-body">
+    <div>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="images/logo_1.png" alt="Logo">
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="resume.html" class="nav-link">Resume</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+            </div>
+        </nav>
+    </div>
+
+    <main class="contact-page">
+        <h1>Contact Me</h1>
+        <p>If you have any questions, opportunities, or just want to connect, feel free to reach out!</p>
+
+        <div class="contact-info">
+            <div class="contact-item">
+                <h3>Phone</h3>
+                <p><a href="tel:+18577570386" class="contact-link">+1 (857) 757-0386</a></p>
+            </div>
+            <div class="contact-item">
+                <h3>Email</h3>
+                <p><a href="mailto:sjha@college.harvard.edu" class="contact-link">sjha@college.harvard.edu</a></p>
+            </div>
+            <div class="contact-item">
+                <h3>Social Media</h3>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/shriman-jha" target="_blank" class="social-icon" aria-label="LinkedIn">
+                        <img src="images/linkedin.png" alt="LinkedIn">
+                    </a>
+                    <a href="https://www.instagram.com/shrinam.ja/" target="_blank" class="social-icon" aria-label="Instagram">
+                        <img src="images/instagram.png" alt="Instagram">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <form class="contact-form" action="mailto:sjha@college.harvard.edu" method="post" enctype="text/plain">
+            <h3>Send Me a Message!</h3>
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>&copy; 2025 Shriman Jha. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

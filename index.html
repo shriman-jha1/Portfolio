@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shriman Jha: Engineering Portfolio</title>
+<meta name="description" content="Shriman Jha's mechanical engineering portfolio showcasing projects in aerospace, robotics, and simulation. Harvard University student with experience in CubeSat design, thermal analysis, and mechanical systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ================= DESIGN SYSTEM (light, editorial) ================= */
+:root{
+  --bg:#f6f5f2;
+  --bg-soft:#efeeea;
+  --ink:#141414;
+  --muted:#55534e;
+  --faint:#8b8880;
+  --line:rgba(20,20,20,.12);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Archivo',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-weight:300;line-height:1.75;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+::selection{background:#141414;color:#f6f5f2}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ================= NAV ================= */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:20px 44px;transition:all .45s var(--ease);
+}
+.nav-social{display:flex;gap:12px;justify-self:start}
+.nav-social a{
+  width:36px;height:36px;display:grid;place-items:center;
+  border:1px solid var(--line);border-radius:50%;color:var(--muted);
+  transition:transform .25s var(--ease),color .25s,border-color .25s;
+}
+.nav-social a:hover{transform:translateY(-2px);color:var(--ink);border-color:var(--ink)}
+.nav-social svg{width:16px;height:16px;fill:currentColor}
+nav.scrolled{
+  padding:12px 44px;background:rgba(246,245,242,.85);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.logo{font-family:var(--serif);font-size:1.6rem;font-weight:600;cursor:pointer;letter-spacing:.01em;display:flex;align-items:center;gap:10px;justify-self:center}
+.logo img{height:100px;width:auto;transition:height .45s var(--ease)}
+nav.scrolled .logo img{height:52px}
+.nav-links{display:flex;gap:34px;justify-self:end}
+.nav-links a{
+  font-size:.82rem;font-weight:400;letter-spacing:.06em;color:var(--muted);
+  position:relative;padding:4px 0;cursor:pointer;transition:color .3s;
+}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--ink);
+  transition:width .4s var(--ease);
+}
+.nav-links a:hover::after{width:100%}
+
+/* ================= PROGRESS ================= */
+#progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--ink);z-index:1001}
+
+/* ================= VIEW TRANSITIONS ================= */
+.view{opacity:0;transform:translateY(20px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.view.active{opacity:1;transform:translateY(0)}
+.view.leaving{opacity:0;transform:translateY(-14px)}
+
+/* ================= HEADER BAND (gray blobs + wave) ================= */
+.band{
+  position:relative;padding:170px 8vw 90px;overflow:hidden;
+  background:#e8e7e3;
+}
+svg.blobs{position:absolute;inset:0;width:100%;height:100%;opacity:.9;pointer-events:none}
+.band .band-inner{position:relative;z-index:2}
+.band h1{
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(2.4rem,6vw,4.6rem);line-height:1.05;max-width:900px;
+}
+.band .band-sub{font-family:var(--serif);font-size:1.25rem;color:var(--muted);margin-top:14px;font-style:italic}
+.wave-bottom{display:block;position:absolute;bottom:-1px;left:0;width:100%;z-index:3}
+
+/* wave divider between sections */
+.wave-div{display:block;width:100%;height:70px;margin:0}
+
+/* ================= SECTIONS / LAYOUT ================= */
+section{padding:90px 8vw;position:relative}
+.container{max-width:1250px;margin:0 auto}
+.eyebrow{
+  font-size:.75rem;letter-spacing:.28em;text-transform:uppercase;color:var(--faint);
+  margin-bottom:18px;font-weight:500;
+}
+h2.big{
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(2.2rem,5vw,4.2rem);line-height:1.05;margin-bottom:14px;
+}
+.datesub{font-family:var(--serif);font-size:1.3rem;color:var(--muted);margin-bottom:28px}
+.prose p{color:#2e2d2a;margin-bottom:16px;font-size:.98rem;max-width:70ch}
+.prose strong{font-weight:500}
+.prose a{border-bottom:1px solid var(--ink)}
+.prose ul{margin:8px 0 20px 20px}
+.prose li{color:#2e2d2a;margin-bottom:8px;font-size:.96rem}
+
+/* two-column row: text + media */
+.row{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin:70px 0}
+.row.flip .txt{order:2}
+.row.flip .med{order:1}
+.fig{border-radius:var(--radius);overflow:hidden;background:#fff;box-shadow:0 20px 50px rgba(20,20,20,.08)}
+.fig img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.fig:hover img{transform:scale(1.035)}
+.fig-cap{font-size:.75rem;color:var(--faint);margin-top:10px;letter-spacing:.05em}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ================= HOME HERO ================= */
+.hero{
+  position:relative;min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;
+  padding:100px 8vw 120px;background:#e8e7e3;overflow:hidden;
+}
+.hero .band-inner{position:relative;z-index:2;max-width:1250px;margin:0 auto;width:100%}
+.hero h1{
+  font-family:var(--serif);font-weight:500;font-size:clamp(3rem,8vw,6.8rem);line-height:1.04;
+}
+.scroll-arrows{
+  position:absolute;bottom:88px;left:50%;transform:translateX(-50%);z-index:4;
+  cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:-6px;
+  animation:bob 2s ease-in-out infinite;transition:opacity .3s;
+}
+.scroll-arrows:hover{opacity:.6}
+.scroll-arrows svg{display:block;width:34px;height:20px;stroke:var(--ink);stroke-width:2.2;fill:none}
+.scroll-arrows svg:first-child{opacity:.45;margin-bottom:-8px}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
+/* intro (bio + video) */
+.intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
+.hero h1 .l{display:block;overflow:hidden;padding:0 .08em .14em 0;margin-bottom:-.14em}
+.hero h1 .l span{display:inline-block;transform:translateY(115%);animation:rise 1s var(--ease) forwards}
+.hero h1 .l:nth-child(2) span{animation-delay:.13s;font-style:italic;color:var(--muted)}
+@keyframes rise{to{transform:translateY(0)}}
+.hero-lede{color:var(--muted);font-size:1rem;max-width:56ch}
+.hero-lede small{color:var(--faint)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.cta-row{display:flex;gap:16px;margin-top:38px}
+.btn{
+  font-size:.82rem;letter-spacing:.08em;font-weight:500;
+  padding:15px 32px;border:1px solid var(--ink);border-radius:100px;color:var(--ink);
+  position:relative;overflow:hidden;cursor:pointer;background:none;transition:color .4s var(--ease);
+  z-index:1;
+}
+.btn::before{content:'';position:absolute;inset:0;background:var(--ink);transform:scaleY(0);transform-origin:bottom;transition:transform .4s var(--ease);z-index:-1}
+.btn:hover{color:var(--bg)}
+.btn:hover::before{transform:scaleY(1)}
+.btn.solid{background:var(--ink);color:var(--bg)}
+.btn.solid::before{background:var(--bg-soft)}
+.btn.solid:hover{color:var(--ink)}
+.hero-img{border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 70px rgba(20,20,20,.16)}
+.hero-img img{width:100%;height:100%;object-fit:cover}
+
+/* ================= PROJECT CARDS ================= */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:34px;margin-top:54px}
+.card{
+  background:#fff;border-radius:var(--radius);overflow:hidden;cursor:pointer;
+  box-shadow:0 8px 30px rgba(20,20,20,.06);
+  transition:transform .55s var(--ease),box-shadow .55s var(--ease);
+  display:flex;flex-direction:column;
+}
+.card:hover{transform:translateY(-8px);box-shadow:0 26px 60px rgba(20,20,20,.13)}
+.card-media{aspect-ratio:16/10;overflow:hidden;background:#e8e7e3;position:relative}
+.card-media img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.card:hover .card-media img{transform:scale(1.06)}
+.card-media .ph{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-style:italic;color:var(--faint);font-size:1.05rem;
+}
+.card-body{padding:26px 28px 28px;display:flex;flex-direction:column;flex-grow:1}
+.card-body .when{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:10px}
+.card-body h3{font-family:var(--serif);font-size:1.55rem;font-weight:500;line-height:1.15;margin-bottom:10px}
+.card-body p{color:var(--muted);font-size:.9rem;flex-grow:1}
+.card-body .more{
+  margin-top:18px;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;font-weight:500;
+  display:inline-flex;gap:10px;align-items:center;transition:gap .35s var(--ease);
+}
+.card:hover .more{gap:16px}
+.card-body .more::after{content:'→'}
+
+/* ================= META BAR (detail pages) ================= */
+.meta-bar{
+  display:flex;flex-wrap:wrap;gap:14px 44px;margin:36px 0 10px;
+  padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.meta-bar div b{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);font-weight:500;margin-bottom:2px}
+.meta-bar div span{font-size:.92rem}
+
+/* horizontal skills row (detail pages) */
+.skills-bar{
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;
+  margin:36px 0 10px;padding:22px 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.skills-bar>b{
+  font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);
+  font-weight:500;margin-right:4px;
+}
+.skills-bar span{
+  font-size:.82rem;color:var(--ink);padding:6px 15px;
+  border:1px solid var(--line);border-radius:100px;white-space:nowrap;
+  transition:border-color .3s var(--ease),background .3s var(--ease);
+}
+.skills-bar span:hover{border-color:var(--ink);background:#fff}
+
+/* back / next */
+.back-link{
+  display:inline-flex;align-items:center;gap:10px;cursor:pointer;
+  font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:500;
+  margin-bottom:34px;transition:gap .3s var(--ease),color .3s;
+}
+.back-link::before{content:'←'}
+.back-link:hover{color:var(--ink);gap:15px}
+.next-proj{display:block;cursor:pointer;margin-top:100px;padding-top:44px;border-top:1px solid var(--line);text-align:right}
+.next-proj b{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--faint);font-weight:500}
+.next-proj h3{
+  font-family:var(--serif);font-size:clamp(1.7rem,3.6vw,2.7rem);font-weight:500;margin-top:8px;
+  transition:padding-right .45s var(--ease),color .3s;
+}
+.next-proj:hover h3{padding-right:18px}
+
+/* deep link button */
+.learn{
+  display:inline-block;margin-top:26px;font-size:.82rem;letter-spacing:.08em;font-weight:500;
+  padding:14px 30px;border:1px solid var(--ink);border-radius:100px;cursor:pointer;
+  transition:background .35s,color .35s;
+}
+.learn:hover{background:var(--ink);color:var(--bg)}
+
+/* document link cards */
+.doc-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin:40px 0}
+.doc-card{
+  display:block;background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 26px;transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s;
+}
+.doc-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(20,20,20,.1);border-color:var(--ink)}
+.doc-card b{display:block;font-family:var(--serif);font-size:1.35rem;font-weight:500;margin-bottom:6px}
+.doc-card b::after{content:' →';color:var(--faint)}
+.doc-card span{font-size:.85rem;color:var(--muted)}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;margin:60px 0}
+.gallery .fig{aspect-ratio:4/3}
+.gallery .fig img{object-fit:contain;background:#fff}
+.gallery:has(> div:only-child){max-width:820px;margin-left:auto;margin-right:auto}
+
+/* standalone text blocks (no image beside them) span the full page width */
+.prose.full p,.prose.full ul{max-width:none}
+
+/* curve section break */
+.curve-break{position:relative;padding:30px 0 10px;overflow:hidden}
+.curve-break svg{display:block;width:100%;height:80px}
+.curve-break path{
+  fill:none;stroke:var(--ink);stroke-width:1.4;opacity:.75;
+  stroke-dasharray:2000;stroke-dashoffset:2000;
+  transition:stroke-dashoffset 2.2s var(--ease) .15s;
+}
+.curve-break.in path{stroke-dashoffset:0}
+.curve-dot{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-38%);
+  background:var(--bg);padding:0 18px;color:var(--ink);font-size:1rem;
+}
+
+/* about — editorial */
+.about-lede{
+  font-family:var(--serif);font-size:clamp(1.35rem,2.2vw,1.8rem);
+  line-height:1.45;color:var(--ink);font-weight:500;margin-bottom:26px;
+}
+.about-lede em{font-style:italic}
+.hl{
+  background:linear-gradient(transparent 64%, #ddd6c4 64%);
+  padding:0 3px;border-radius:2px;white-space:nowrap;
+}
+.hero-lede a{border-bottom:1px solid var(--muted);transition:border-color .3s,color .3s}
+.hero-lede a:hover{color:var(--ink);border-color:var(--ink)}
+.fact-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:18px;margin-top:64px;
+}
+.fact{
+  background:#fff;border-radius:var(--radius);padding:26px 24px;
+  box-shadow:0 8px 26px rgba(20,20,20,.05);
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+}
+.fact:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(20,20,20,.1)}
+.fact b{
+  font-family:var(--serif);font-size:2rem;font-weight:500;display:block;line-height:1.1;
+}
+.fact span{font-size:.78rem;color:var(--muted);display:block;margin-top:8px;line-height:1.5}
+.callout{
+  margin-top:44px;display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:20px;
+  border:1px solid var(--ink);border-radius:var(--radius);padding:26px 30px;
+}
+.callout p{font-family:var(--serif);font-size:1.25rem;font-style:italic;margin:0}
+.callout small{display:block;font-family:var(--sans);font-style:normal;font-size:.72rem;color:var(--faint);margin-top:4px}
+.fig-cap-vid{font-size:.75rem;color:var(--faint);margin-top:10px;letter-spacing:.05em;text-align:right}
+
+/* skills */
+.skill-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;margin-top:80px}
+.skill-col h5{
+  font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;font-weight:500;
+  color:var(--ink);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--line);
+}
+.skill-col ul{list-style:none}
+.skill-col li{color:var(--muted);font-size:.9rem;padding:6px 0;transition:color .3s,padding-left .3s}
+.skill-col li:hover{color:var(--ink);padding-left:8px}
+
+/* about + contact */
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center}
+.contact-sec{text-align:center;background:var(--bg-soft)}
+.contact-sec .biglink{
+  font-family:var(--serif);font-style:italic;font-weight:500;
+  font-size:clamp(1.7rem,4.5vw,3.4rem);display:inline-block;margin-top:16px;
+  border-bottom:1px solid transparent;transition:border-color .35s;
+}
+.contact-sec .biglink:hover{border-color:var(--ink)}
+footer{
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center;
+  padding:32px 44px;border-top:1px solid var(--line);
+  font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);
+}
+footer .flinks{display:flex;gap:26px}
+footer .flinks a:hover{color:var(--ink)}
+
+/* ================= HAMBURGER (hidden on desktop) ================= */
+.nav-toggle{
+  display:none;background:none;border:none;cursor:pointer;
+  padding:10px;justify-self:end;position:relative;z-index:1102;
+}
+.nav-toggle span{
+  display:block;width:26px;height:2px;background:var(--ink);margin:6px 0;border-radius:2px;
+  transition:transform .35s var(--ease),opacity .25s;
+}
+nav.menu-open .nav-toggle span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+nav.menu-open .nav-toggle span:nth-child(2){opacity:0}
+nav.menu-open .nav-toggle span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:900px){
+  nav{padding:16px 22px}
+  nav.scrolled{padding:10px 22px}
+  .nav-links{gap:18px}
+  .nav-links a{font-size:.72rem}
+  section{padding:70px 6vw}
+  .band{padding:140px 6vw 70px}
+  .hero{padding:130px 6vw 90px}
+  .intro-grid,.row,.row.flip,.about-grid{grid-template-columns:1fr;gap:40px}
+  .row.flip .txt{order:1}
+  .row.flip .med{order:2}
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+  /* --- nav bar: logo left, hamburger right --- */
+  nav{display:flex;justify-content:space-between;align-items:center;padding:10px 16px}
+  nav.scrolled{padding:8px 16px}
+  /* NOTE: no backdrop-filter here — a filtered ancestor becomes the containing
+     block for position:fixed children, which would trap the menu panel inside
+     the nav bar instead of covering the viewport */
+  nav,nav.scrolled{
+    background:rgba(246,245,242,.96);border-bottom:1px solid var(--line);
+    backdrop-filter:none;-webkit-backdrop-filter:none;
+  }
+  .logo{justify-self:auto}
+  .logo img{height:48px}
+  nav.scrolled .logo img{height:42px}
+  .nav-toggle{display:block}
+  .nav-social{display:none}
+
+  /* --- full-screen menu panel --- */
+  .nav-links{
+    position:fixed;inset:0;height:100dvh;z-index:1100;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;
+    background:var(--bg);
+    opacity:0;pointer-events:none;transition:opacity .35s var(--ease);
+  }
+  nav.menu-open .nav-links{opacity:1;pointer-events:auto}
+  .nav-links a{
+    font-family:var(--serif);font-size:1.9rem;font-weight:500;letter-spacing:.02em;
+    color:var(--ink);padding:12px 0;
+    opacity:0;transform:translateY(14px);transition:opacity .4s var(--ease),transform .4s var(--ease);
+  }
+  nav.menu-open .nav-links a{opacity:1;transform:translateY(0)}
+  nav.menu-open .nav-links a:nth-child(1){transition-delay:.05s}
+  nav.menu-open .nav-links a:nth-child(2){transition-delay:.1s}
+  nav.menu-open .nav-links a:nth-child(3){transition-delay:.15s}
+  nav.menu-open .nav-links a:nth-child(4){transition-delay:.2s}
+  .nav-links a::after{height:2px}
+
+  /* social icons reappear at the bottom of the open menu */
+  nav.menu-open .nav-social{
+    display:flex;position:fixed;bottom:56px;left:50%;transform:translateX(-50%);z-index:1101;
+  }
+  nav.menu-open .nav-social a{width:44px;height:44px}
+
+  /* --- headings --- */
+  .hero h1{font-size:clamp(2.5rem,11.5vw,3.6rem)}
+  .band h1{font-size:clamp(1.9rem,8.5vw,2.7rem)}
+  h2.big{font-size:clamp(1.85rem,8vw,2.6rem)}
+  .datesub{font-size:1.1rem}
+  .band .band-sub{font-size:1.05rem}
+  .about-lede{font-size:1.25rem}
+  .hl{white-space:normal}
+
+  /* --- layout & spacing --- */
+  section{padding:56px 20px}
+  .band{padding:120px 20px 56px}
+  .hero{padding:110px 20px 100px;min-height:100svh}
+  .row{margin:48px 0;gap:28px}
+  .grid{grid-template-columns:1fr;gap:24px}
+  .gallery,.doc-links{grid-template-columns:1fr}
+  .fact-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .skill-cols{gap:26px;margin-top:50px}
+  .meta-bar{gap:12px 24px}
+  .skills-bar span{font-size:.76rem;padding:5px 12px}
+  .next-proj{margin-top:64px;text-align:left}
+  .scroll-arrows{bottom:60px}
+  .curve-break svg{height:52px}
+
+  /* --- buttons & touch targets --- */
+  .cta-row{flex-wrap:wrap;gap:12px}
+  .cta-row .btn{flex:1 1 auto;text-align:center;padding:15px 22px}
+  .learn{width:100%;text-align:center}
+  .contact-sec .biglink{font-size:clamp(1.25rem,6.5vw,1.9rem);word-break:break-all}
+
+  /* --- footer --- */
+  footer{padding:24px 20px;flex-direction:column;justify-content:center;text-align:center;gap:12px}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav id="nav">
+  <div class="nav-social">
+    <a href="https://www.linkedin.com/in/shrimanjha/" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.1c.5-1 1.8-2.2 3.8-2.2 4.1 0 4.9 2.7 4.9 6.2V24h-4v-8.2c0-2 0-4.5-2.7-4.5-2.7 0-3.1 2.1-3.1 4.4V24h-4V8z"/></svg>
+    </a>
+    <a href="mailto:sjha@college.harvard.edu" aria-label="Email">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/shrinam.ja/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2zm0 2A1.8 1.8 0 1 0 13.8 12 1.8 1.8 0 0 0 12 10.2zM17.8 6.6a.7.7 0 1 1-.7-.7.7.7 0 0 1 .7.7z"/></svg>
+    </a>
+  </div>
+  <div class="logo" onclick="go('home')">
+    <img src="images/logo_1.png" alt="S. Jha" onerror="this.remove()">
+  </div>
+  <div class="nav-links" id="navLinks">
+    <a onclick="goSection('about')">About</a>
+    <a onclick="goSection('projects')">Projects</a>
+    <a href="Shriman_Jha_Resume.pdf" target="_blank">Resume</a>
+    <a onclick="goSection('contact')">Contact</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main id="app"></main>
+
+<script>
+/* ================= HELPERS ================= */
+const BLOBS = `<svg class="blobs" viewBox="0 0 1440 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+ <g fill="#c9c7c2" opacity=".55">
+  <path d="M-30,70 C40,-10 160,-5 190,75 C220,155 140,205 60,180 C-20,155 -80,125 -30,70Z"/>
+  <path d="M1240,-40 C1350,-70 1460,15 1435,105 C1410,195 1290,190 1240,115 C1190,40 1170,-20 1240,-40Z"/>
+  <path d="M600,-40 C680,-75 760,-20 745,50 C730,120 625,120 585,60 C545,0 540,-15 600,-40Z"/>
+  <path d="M350,520 C420,475 515,500 520,575 C525,650 415,680 355,635 C295,590 295,555 350,520Z" opacity=".5"/>
+  <path d="M1220,540 C1300,500 1390,540 1378,615 C1366,690 1255,700 1210,640 C1165,580 1165,570 1220,540Z" opacity=".45"/>
+ </g>
+ <g fill="#a5a39e" opacity=".35">
+  <path d="M210,190 C270,155 340,180 335,240 C330,300 245,310 205,270 C165,230 165,215 210,190Z"/>
+  <path d="M920,120 C985,85 1060,115 1053,180 C1046,245 955,255 915,210 C875,165 875,150 920,120Z"/>
+  <path d="M690,330 C745,300 815,320 812,380 C809,440 725,450 685,412 C645,374 648,355 690,330Z" opacity=".7"/>
+  <path d="M1350,300 C1410,275 1470,315 1452,370 C1434,425 1355,418 1330,370 C1305,322 1308,318 1350,300Z"/>
+ </g>
+</svg>`;
+
+/* hand-drawn curve section break — the standard divider */
+const WAVE = () => `
+  <div class="curve-break reveal" aria-hidden="true">
+    <svg viewBox="0 0 1440 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M-20,55 C240,115 480,-5 720,55 C960,115 1200,-5 1460,55" />
+    </svg>
+    <span class="curve-dot">✦</span>
+  </div>`;
+
+const bandWave = `<svg class="wave-bottom" viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="height:70px"><path d="M0,35 C260,75 520,5 760,30 C1000,55 1240,15 1440,40 L1440,70 L0,70Z" fill="#f6f5f2"/></svg>`;
+
+const fig = (src,cap='',ratio='') => `
+  <div>
+    <div class="fig" ${ratio?`style="aspect-ratio:${ratio}"`:''}>
+      <img src="${src}" alt="${cap||'Project image'}" loading="lazy" onerror="this.parentElement.parentElement.style.display='none'">
+    </div>
+    ${cap?`<div class="fig-cap">${cap}</div>`:''}
+  </div>`;
+
+/* horizontal skills row for detail pages */
+const skillsBar = (...items) => `
+  <div class="skills-bar reveal">
+    <b>Skills</b>
+    ${items.map(s=>`<span>${s}</span>`).join('')}
+  </div>`;
+
+/* ================= PROJECT DATA ================= */
+const projects = [
+{
+  slug:'hucsat',
+  when:'Sep 2024 — Apr 2025',
+  title:'Harvard University CubeSat (HuCSat)',
+  role:'Mechanical Lead',
+  thumb:'images/hucsat.jpeg',
+  short:'A 2U CubeSat in orbit through NASA CSLI testing nitinol shape-memory solar array actuation. Launched to the International Space Station aboard the Northrop Grumman NG-24 mission in April 2026',
+  html:()=>`
+  <section><div class="container">
+    <span class="back-link reveal" onclick="go('home','projects')">All projects</span>
+    <div class="reveal"><div class="eyebrow">Harvard Satellite Team</div>
+    <h2 class="big">Mechanical Lead</h2>
+    <div class="datesub">September 2024 to December 2025</div></div>
+    ${skillsBar('Systems integration','Tolerance analysis','Environmental testing','SolidWorks','COMSOL','Python')}
+
+    <div class="row reveal">
+      <div class="txt prose">
+        <p>HuCSat is <strong>Harvard's first student-built satellite</strong>. It's 2U CubeSat selected through NASA's prestigious <strong><a href="https://www.nasa.gov/image-article/nasa-launches-six-cubesats-to-international-space-station/" target="_blank">CubeSat Launch Initiative (CSLI)</a></strong>. After full assembly and vibration testing, it was handed off to NASA's launch integration flow in January 2026 and <strong>launched to the International Space Station aboard <a href="https://en.wikipedia.org/wiki/Cygnus_NG-24" target="_blank">Northrop Grumman's NG-24 resupply mission on April 11, 2026</a></strong>, as part of the ELaNa 58 launch group. It deploys into a ~410 km orbit from the ISS via the Nanoracks CubeSat Deployer.</p>
+        <p>The primary focus of our payload design is to explore the innovative use of <strong>nitinol, a shape memory alloy</strong>, to deploy and actuate solar panels.  It offers an alternative to the traditional motor-driven mechanisms. We are using a <strong>Sarrus linkage mechanism</strong>.</p>
+        <p>We are currently in the process of analyzing the telemetry data from the satellite to verify the performance of the nitinol actuation system aswell as the overall health of the satellite. The team is also preparing to make the build-process open source.</p> 
+      </div>
+      <div class="med">${fig('images/hucsat-cutaway.jpg','HuCSat, fully assembled')}</div>
+    </div>
+
+    <div class="prose full reveal" style="margin:20px 0 30px">
+      <h2 class="big" style="font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:16px">Why it matters</h2>
+      <p>On small satellites, moving hardware usually means motors, geartrains, and control electronics, all of which cost mass, power, and reliability margin. HuCSat tests a lighter alternative: train a nickel–titanium element to a target shape, heat it electrically to trigger its phase transition, and use the resulting contraction as an actuator. If an SMA-driven mechanism can deliver repeatable motion in the space environment with minimal electronics, it opens a low-cost path to deployables and pointing mechanisms for the whole CubeSat community.</p>
+      <p>The mission's on-orbit goals: safely initialize after ISS deployment and detumble, deploy the payload from its stowed configuration, demonstrate controlled reorientation of the SMA-driven solar panel platform for at least one orbit, and downlink telemetry with sensor verification of actuation.</p>
+    </div>
+
+    <div class="row flip reveal">
+      <div class="txt prose">
+        <div class="eyebrow">My Role</div>
+        <p>As the mechanical team lead, I coordinated the integration of mechanical components with electrical and software subsystems, ensuring interface compatibility and alignment across the full satellite. I oversaw tolerance analyses, structural layouts, and iterative prototyping to mitigate integration risk early in the design cycle, and I led environmental testing efforts to validate mechanical and thermal performance under representative launch and on-orbit conditions.</p>
+        <p>In addition, I supervised the development of detailed assembly and integration guides defining assembly order, fastener specifications, handling procedures, and verification steps to ensure repeatable and reliable spacecraft builds. My role also included coordinating subsystem-level mechanical requirements, managing design reviews, and supporting system-level integration to ensure the CubeSat meets both functional and mission constraints.</p>
+      </div>
+      <div class="med">${fig('images/IMG_9873.jpeg','HuCSat in Nanoracks Deployer')}</div>
+    </div>
+
+    <div class="row reveal">
+      <div class="txt prose">
+        <div class="eyebrow">Payload Mechanism</div>
+        <h2 class="big" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">Sarrus Linkage Deployment</h2>
+        <p>The Sarrus linkage converts the contraction of heated nitinol elements into pure straight-line panel motion: no motors, no gears, minimal parts. Fewer moving parts means fewer failure modes for one of the riskiest moments of any small-sat mission: deployment.</p>
+        <p>Once deployed, nitinol coils along the platform edges can be <strong>selectively heated</strong> to generate asymmetric contraction, rotating the panel platform toward the Sun. The whole mechanism is low-power (heating only when actuation is needed), low part count, and sensor-verifiable using onboard light sensors confirm every orientation change from orbit. Results and analysis coming soon!</p>
+      </div>
+      <div class="med">${fig('images/Sarrus_linkage_with_four_sides.gif','Sarrus linkage mechanism','4/3')}</div>
+    </div>
+
+    <div class="row flip reveal">
+      <div class="txt prose">
+        <div class="eyebrow">Analysis</div>
+        <h2 class="big" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">Orbital &amp; Thermal Simulations</h2>
+        <p>I rigourously developed orbital and thermal simulations to predict HuCSat's temperature behavior across sunlit and eclipse phases, starting from a simplified Python-based physics model and progressively increasing fidelity. By prioritizing first-principles energy balance and orbital geometry over CAD complexity, I built validated transient thermal models that preserved the underlying physics while remaining computationally tractable.</p>
+        <p>These simulations informed thermal margins and mechanical design decisions, ensuring robust performance across the mission's orbital environment.</p>
+        <span class="learn" onclick="go('project/hucsat-thermal')">Learn more</span>
+      </div>
+      <div class="med">${fig('images/Sim/hah.gif','COMSOL orbital simulation where the yellow nodes represent the sun\'s direction')}</div>
+    </div>
+
+    ${nextProj('hucsat')}
+  </div></section>`
+},
+{
+  slug:'hucsat-thermal',
+  when:'2024 — 2025',
+  title:'Orbital & Thermal Simulations for HuCSat',
+  role:'Simulation & Analysis',
+  hidden:true,
+  thumb:'images/Screenshot 2025-10-08 024050.png',
+  short:'Python-to-COMSOL transient thermal modeling of HuCSat across full orbit cycles.',
+  html:()=>`
+  <section><div class="container">
+    <span class="back-link reveal" onclick="go('project/hucsat')">Back to HuCSat</span>
+    <div class="reveal"><div class="eyebrow">HuCSat · Deep Dive</div>
+    <h2 class="big">Orbital &amp; Thermal Simulations</h2>
+    <div class="datesub">Predicting spacecraft temperature behavior across full orbit cycles</div></div>
+    ${skillsBar('Thermal modeling','Transient simulation','Reduced-order modeling','Python','COMSOL')}
+
+    <div class="prose full reveal" style="margin-top:36px">
+      <p>Every ~93 minutes, HuCSat swings from full sunlight into Earth's shadow and back. The electronics, the battery, and the nitinol payload all have temperature limits, so before committing to the mechanical design we needed to know how hot and how cold the spacecraft would actually get over the orbit. I built the simulation framework to answer that and to help make design decisions.</p>
+    </div>
+
+    <div class="row reveal">
+      <div class="txt prose">
+        <h2 class="big" style="font-size:1.8rem">Start stupid simple: Python first</h2>
+        <p>Before touching any CAD, I wrote a low-fidelity thermal model in Python. The whole spacecraft was a handful of thermal nodes with time-varying environmental heating, but it ran in seconds and every number in it meant something physical. That was enough to establish the expected temperature trends and pick out the worst-case hot and cold scenarios.</p>
+        <p>Just as important, this became my baseline and helped me build intuition about the system's behavior as this was my first attempt at modeling the thermal dynamics. This was also while I was concurrently taking a course in heat transfer and had limited understanding of heat transfer.</p>
+      </div>
+      <div class="med">${fig('images/Sim/hucsat_temps.png','My starting Python sim, per-node temperatures over ten orbits')}</div>
+    </div>
+
+    <div class="row flip reveal">
+      <div class="txt prose">
+        <h2 class="big" style="font-size:1.8rem">Three ways a satellite gets heated</h2>
+        <p>In low Earth orbit we can assume there's no air, so everything is radiation: direct sunlight, sunlight reflected off Earth (albedo), and infrared emitted by Earth itself. I modeled each source explicitly, computed eclipse windows from the orbital geometry, and cut the solar and albedo terms to zero while the spacecraft sat in shadow. You can see the result in the flux history as clean square-wave transitions at eclipse entry and exit.</p>
+        <p>Modeling each input separately meant a temperature trend could always be traced back to its cause, instead of trusting a black box.</p>
+      </div>
+      <div class="med">${fig('images/Sim/hucsat_env_x+.png','Solar, albedo, and Earth-IR flux on one face across successive orbits — from the Python model')}</div>
+    </div>
+
+    <div class="gallery reveal">
+      ${fig('images/Sim/an9.gif','Orbit and Earth radiosity in the COMSOL environment')}
+      ${fig('images/Sim/hah.gif','External irradiation on the spacecraft as it passes over the day side')}
+    </div>
+
+    <div class="row reveal">
+      <div class="txt prose">
+        <h2 class="big" style="font-size:1.8rem">Then COMSOL & the CAD trap</h2>
+        <p>Once the Python trends held up, I rebuilt the model in COMSOL to add what Python couldn't model which are the real geometry, multi-material regions, conduction paths, and time-dependent boundary conditions in a single transient environment.</p>
+        <p>The obvious next step was to import the full CAD model, but this turned out to be my biggest mistake. Detailed geometry ballooned computation time and made heat flow impossible to trace. In several cases, extra detail actively obscured the physics instead of improving accuracy. So after hours of work and frustration, I decided to go back to first principles and model the essential physics based on a simplified geometry.</p>
+      </div>
+      <div class="med">${fig('images/Sim/an8.gif','Meshed spacecraft model in COMSOL, internal boards and rails resolved')}</div>
+    </div>
+
+    <div class="row flip reveal">
+      <div class="txt prose">
+        <h2 class="big" style="font-size:1.8rem">A reduced-order model that keeps the physics</h2>
+        <p>I restructured the CAD into representative external surfaces and internal thermal nodes. Surface areas, optical properties, view factors, and the dominant conduction paths stayed exact. Screws, PCB detail, and cosmetic features went as none of it moves meaningful heat at spacecraft scale. Conduction between major components became simplified thermal connections.</p>
+        <p>The result ran resonably fast ~ 30 mins, and, the part I cared about most, stayed interpretable. When a node ran hot, I could say why.</p>
+      </div>
+      <div class="med">${fig('images/Sim/an2.gif','The reduced-order thermal model — external surfaces and deployable panel as thermal nodes')}</div>
+    </div>
+
+    <div class="row reveal">
+      <div class="txt prose">
+        <h2 class="big" style="font-size:1.8rem">Results: temperature swings, orbit after orbit</h2>
+        <p>With the reduced geometry in place, I ran transient simulations over several orbital periods, including the eclipse transitions. The final predictions set the operational temperature bounds, confirmed our thermal margins, and fed directly into mechanical decisions: surface treatments, material selection, and where components sit inside the bus aswell as if certain components could work given the thermal constraints.</p>
+      </div>
+      <div class="med">${fig('images/Sim/graph.png','Max/min spacecraft temperatures against the illuminated state, the eclipse plunge and recovery')}</div>
+    </div>
+
+    <div class="prose full reveal" style="margin-top:40px">
+      <h2 class="big" style="font-size:1.8rem;margin-bottom:14px">What I took away</h2>
+      <p>Start with the simplest model that captures the physics, and add fidelity only when it buys real insight. High-fidelity CAD doesn't automatically produce better thermal predictions as reliable results come from preserving the governing physics in a model you can actually debug.</p>
+    </div>
+
+    ${nextProj('hucsat-thermal')}
+  </div></section>`
+},
+{
+  slug:'hrpg',
+  when:'Sep 2024 — Dec 2025',
+  title:'Harvard Rocket Propulsion Group',
+  role:'President (2024–2025)',
+  thumb:'images/hrpg_logo.png',
+  short:'Led the team to build a low-cost 500 lbf liquid rocket engine and spearheaded the initial development of a regeneratively cooled engine.',
+  html:()=>`
+  <section><div class="container">
+    <span class="back-link reveal" onclick="go('home','projects')">All projects</span>
+    <div class="reveal"><div class="eyebrow">Harvard Rocket Propulsion Group (HRPG)</div>
+    <h2 class="big">President</h2>
+    <div class="datesub">December 2024 to December 2025</div></div>
+
+    ${skillsBar('Leadership','Project management','Propulsion','SolidWorks','Manual mill & lathe','TIG welding')}
+
+    <div class="row reveal">
+      <div class="txt prose">
+        <p><strong>Harvard Rocket Propulsion Group (HRPG)</strong> was a student-led aerospace organization (now has merged with the Harvard Satellite team to form Harvard Undergraduate Aerospace Collective) advancing hands-on rocketry at Harvard through the design, fabrication, and testing of low-cost liquid rockets by manufacturing major components in-house.</p>
+        <p>As President, I led HRPG's technical direction and operations by overseeing finances, logistics, and long-term strategy while coordinating multidisciplinary teams across propulsion, fluids, structures, and avionics. I was in charge of the execution of major propulsion programs, including pioneering and static-firing a scalable <strong>nitrous-oxide/ethanol engine producing 500 lbf of thrust</strong>, and spearheading the initial development of a <strong>regeneratively cooled liquid rocket engine</strong> fabricated entirely through manual machining.</p>
+      </div>
+      <div class="med">${fig('images/WhatsApp Image 2025-12-27 at 5.55.09 PM.jpeg','Carrying the rocket at Harvard')}</div>
+    </div>
+
+    ${WAVE('#efeeea')}
+
+    <div class="row flip reveal" style="margin-top:40px">
+      <div class="txt prose">
+        <div class="eyebrow">Before the presidency</div>
+        <h2 class="big" style="font-size:clamp(1.9rem,4vw,3rem)">Ignition Lead</h2>
+        <div class="datesub" style="font-size:1.1rem">September 2024 to December 2024</div>
+        <p>Before serving as President of HRPG, I led the design and development of the <strong>ignition system for our first full-scale liquid rocket engine</strong>. This project involved end-to-end system design, testing, and iteration to achieve reliable, repeatable ignition.</p>
+        <p>To learn more about the engineering decisions, design methodology, and hands-on workflow behind this system, click the link below.</p>
+        <span class="learn" onclick="go('project/igniter')">Igniter design deep-dive</span>
+      </div>
+      <div class="med">${fig('images/hrpg_ignitor/Screenshot 2026-07-13 103809.png','The static test stand for our first full-scale engine')}</div>
+    </div>
+
+    ${nextProj('hrpg')}
+  </div></section>`
+},
+{
+  slug:'igniter',
+  hidden:true,
+  when:'Sep — Dec 2024',
+  title:'Igniter Design for HRPG',
+  role:'Ignition Lead',
+  thumb:'images/hrpg_ignitor/Screenshot 2026-07-13 103911.png',
+  short:'End-to-end design, fabrication, and testing of the ignition system for a 500 lbf ethanol–LOX liquid rocket engine — three design iterations and an honest FMEA.',
+  html:()=>`
+  <section><div class="container">
+    <span class="back-link reveal" onclick="go('project/hrpg')">Back to HRPG</span>
+    <div class="reveal"><div class="eyebrow">HRPG · Deep Dive</div>
+    <h2 class="big">Igniter Design for HRPG</h2>
+    <div class="datesub">September 2024 to December 2024</div></div>
+
+    ${skillsBar('System design','FMEA','Hot-fire testing','SolidWorks','FEA (Ansys Fluent)','Manual machining')}
+
+    <div class="prose full reveal" style="margin-top:20px">
+      <p>Prior to serving as President of HRPG, I led the design, fabrication, and testing of the ignition system for our first full-scale liquid rocket engine. This effort involved end-to-end system development, including requirements definition, hardware design, integration with the propulsion and fluids systems, and iterative testing to achieve reliable, repeatable ignition. Below, I walk through the design evolution, key engineering decisions, and testing methodology that informed the final system architecture.</p>
+    </div>
+
+    <div class="row reveal">
+      <div class="txt prose">
+        <h2 class="big" style="font-size:1.9rem">System Requirements</h2>
+        <p>This project aimed to design and build a <strong>500 lbf liquid rocket engine</strong> for a flight vehicle using <strong>ethanol–LOX</strong>, which were selected for performance, storability, and operational safety in a student environment.</p>
+        <p>All hardware was required to be testable on a portable static test stand, imposing strict constraints on mass and system complexity. The full propulsion system, including feed lines, valves, instrumentation, and structural interfaces, had to be designed to operate reliably under cryogenic conditions.</p>
+        <p>A <strong>$7,000 total budget</strong> required a strong focus on manufacturability. Nearly all components were designed for in-house manual machining, minimizing outsourcing and enabling rapid iteration. The project followed a <strong>two-and-a-half-month design–build–test cycle</strong>, which directly informed conservative safety margins, simplified plumbing architecture, and material selection.</p>
+      </div>
+      <div class="med">${fig('images/hrpg_ignitor/Screenshot 2026-07-13 103809.png','The portable static test stand')}</div>
+    </div>
+
+    <div class="gallery reveal">
+      ${fig('images/hrpg_ignitor/Screenshot 2026-07-13 104034.png','Building the test stand')}
+      ${fig('images/hrpg_ignitor/Screenshot 2026-07-13 103823.png','LOX feed system schematic <i>(Not my work!)</i>')}
+    </div>
+
+    ${WAVE('#efeeea')}
+
+    <div class="prose full reveal" style="margin-top:50px">
+      <h2 class="big" style="font-size:2rem;text-align:center;margin-bottom:34px">Initial Igniter Design (v1)</h2>
+      <div class="gallery" style="margin:0 0 40px">
+        ${fig('images/hrpg_ignitor/Screenshot 2026-07-13 103835.png','Igniter v1 — scaled-down torch igniter assembly')}
+        ${fig('images/hrpg_ignitor/Screenshot 2026-07-13 103843.png','v1 cutaway — spark plug flange, precombustion chamber, and torch tube')}
+      </div>
+      <p>The initial igniter concept was inspired by torch-ignition architectures commonly used on 40,000 lbf–class liquid rocket engines, aggressively scaled down for a 500 lbf thrust class system. The goal was to <strong>implement a proven, high-reliability ignition approach while maintaining compatibility</strong> with a compact flight engine.</p>
+      <p>The igniter assembly consisted of <strong>three primary components</strong>. An upper flange housed a surface-gap spark plug to initiate ignition. Below this, a small precombustion chamber injected and premixed ethanol and oxygen to generate a stable ignition flame. This flame was then delivered through a torch tube that directed the hot plume into the main combustion chamber. To support future iteration, a generic ignitor port was also designed to accept the torch tube, enabling flexibility across different hot-fire configurations. Quick-disconnect fittings were incorporated to simplify assembly and servicing, and sealing was handled using Teflon-coated metal O-rings (3/16" OD, 3/32" cross-section), which are well-established for high-temperature, high-pressure propulsion environments. In principle, the system offered strong reliability.</p>
+      <p>However, at this scale, reliability required verifying every sealing interface, threaded joint, and flow path — and the part count increased rapidly. For a team operating under a compressed schedule, the design began to introduce significant integration and verification overhead. A critical constraint was the exclusive use of NPT threaded fluid connections. NPT fittings rely on tapered threads to provide both structural retention and pressure sealing, which requires the threaded hole to be machined perfectly concentric and perpendicular to the local surface. This exposed a fundamental geometric issue: several ports were located on curved surfaces. Machining NPT threads into curved geometry leads to uneven thread engagement, misalignment, and degraded sealing performance and in the worst case, leakage or fitting failure under pressure.</p>
+      <p>Although the concept scaled well in theory, this initial design revealed a major manufacturability and sealing challenge that could not be ignored. Addressing this issue became one of the defining engineering problems of the project and directly motivated the subsequent design iterations.</p>
+    </div>
+
+    <div class="prose full reveal" style="margin-top:60px">
+      <h2 class="big" style="font-size:2rem;margin-bottom:24px">Igniter Design v2</h2>
+      <div class="gallery" style="margin:0 0 40px">
+        ${fig('images/hrpg_ignitor/Screenshot 2026-07-13 103857.png','Igniter v2 — single-body brass block')}
+        ${fig('images/hrpg_ignitor/Screenshot 2026-07-13 103903.png','v2 cutaway — internal flow paths machined directly into the stock')}
+      </div>
+      <p>In response to the manufacturability and sealing limitations of the initial design, the igniter was redesigned around a <strong>compact, single-body geometry</strong>. This iteration consolidated the entire ignitor into a single solid block, with all internal flow paths and features machined directly into the material.</p>
+      <p><strong>Brass</strong> was selected over aluminum for several reasons. From a manufacturing standpoint, brass is significantly more forgiving during manual machining: taps cut more cleanly, threads are less prone to galling, and tight tolerances are easier to maintain. Thermally, brass also retains strength at higher local temperatures, providing additional margin against transient heating, thermal shock, and localized failure during ignition events.</p>
+      <p>Transitioning to a single-stock design eliminated multiple failure modes present in the previous architecture. The redesign removed several sealing interfaces, eliminated the need for metal O-rings, and fully resolved the curved-surface threading issue. All NPT ports were relocated to <strong>flat, perpendicular faces</strong>, substantially improving sealing reliability and enabling straightforward inspection and verification of each threaded connection.</p>
+      <p>While externally simple, this geometry introduced a new internal complexity. The ignitor tube intersected the combustion cavity at an angle, injector passages required precise alignment, and the spark gap needed to be positioned accurately relative to incoming propellant flow. As a result, the internal channel geometry became difficult to machine cleanly and repeatably, despite the apparent simplicity of the exterior.</p>
+    </div>
+
+    ${WAVE('#efeeea')}
+
+    <div class="prose full reveal" style="margin-top:50px">
+      <h2 class="big" style="font-size:2rem;text-align:center;margin-bottom:34px">Final Igniter Design</h2>
+      <p>After working through the manufacturability challenges of Versions 1 and 2, the ignition problem was revisited from first principles, with structural integrity as the dominant constraint. During this process, we also recognized a fundamental oversight: <strong>the engine itself did not include a dedicated ignitor port</strong>. Adding one at this stage would have required drilling or welding into the combustion chamber, introducing stress concentrations that were unacceptable at the target chamber pressures without a full FEA-driven structural redesign.</p>
+      <p>Rather than modifying the chamber wall to accommodate a side-mounted igniter, Version 3 adopted a fundamentally different approach: a <strong>throat-mounted, sacrificial igniter</strong> that required no additional penetrations into the engine structure.</p>
+      <div class="gallery" style="margin:36px 0">
+        ${fig('images/hrpg_ignitor/Screenshot 2026-07-13 103911.png','Igniter v3 — throat-mounted, sacrificial architecture')}
+        ${fig('images/hrpg_ignitor/Screenshot 2026-07-13 103918.png','v3 seated in the engine throat — no chamber penetrations required')}
+      </div>
+      <p>The ignition source selected was a commercially available <strong>Estes E12 solid rocket motor</strong>. These motors are inexpensive, readily available, and produce a high-temperature plume sufficient to reliably ignite an ethanol–LOX main engine. This approach eliminated the need for spark systems, propellant feed lines, valves, and sealing interfaces — removing nearly all of the failure modes encountered in earlier designs.</p>
+      <p>To integrate the igniter, a <strong>3D-printed mounting fixture</strong> was designed to seat directly in the chamber throat region. This location allows the igniter hardware to be fully sacrificial, functioning only during the first milliseconds of startup before being shielded from the main flow. Structural loads remain carried by the stainless-steel chamber, rather than by a tapped boss or welded port, preserving chamber integrity.</p>
+      <p><strong>Finite element analysis (FEA)</strong> was used to size the igniter fixture and define its intended failure mode. The mount was designed to withstand the thrust and handling loads of the solid igniter motor, maintaining alignment during startup, while yielding under main-engine thrust. This ensured that the fixture would fail sacrificially rather than transmit excessive loads into the throat or chamber structure.</p>
+      <div class="gallery" style="margin:36px 0">
+        ${fig('images/hrpg_ignitor/Screenshot 2026-07-13 103952.png','The 3D-printed mounting fixture, as built')}
+        ${fig('images/hrpg_ignitor/Screenshot 2026-07-13 103936.png','FEA of the fixture')}
+        ${fig('images/hrpg_ignitor/Screenshot 2026-07-13 103927.png','Estes E12 thrust curve')}
+      </div>
+      <p>This design is mechanically simple, structurally conservative, and dramatically reduces fabrication and integration complexity. Version 3 represents a shift from a highly engineered miniature torch igniter to a robust ignition philosophy aligned with the project's schedule, budget, and reliability goals.</p>
+      <div class="gallery" style="margin:36px 0">
+        ${fig('images/hrpg_ignitor/Screenshot 2026-07-13 104010.png','Igniter test, the E12 plume')}
+      </div>
+    </div>
+
+    <div class="prose full reveal" style="margin-top:60px">
+      <h2 class="big" style="font-size:2rem;margin-bottom:24px">Failure and FMEA</h2>
+      <p>After months of design and fabrication, we reached our first static hot-fire attempt. The countdown and pressurization sequence executed nominally. During chilldown, we observed a large liquid oxygen plume, indicating proper injector operation and confirming that the oxidizer feed system and plumbing were delivering flow as designed. Although no footage was captured, this validated a significant portion of the fluid system and control logic prior to ignition.</p>
+      <p>However, when the ignition command was issued, <strong>the engine failed to light</strong>. While the system reached an active, pressurized state, no combustion occurred. This immediately initiated a structured failure analysis, which identified the igniter system as the primary root cause.</p>
+      <p>The igniter failure resulted from a combination of electrical activation and field-handling issues. The Estes motor was originally intended to be fired using a dedicated electronic ignition circuit but due to the tight schedule and budget constraints, the final implementation was hard-wired. Approximately <strong>700 feet of wire</strong> was used to keep personnel outside the hazard zone. During transport and setup, the wire became kinked and crumpled, leading to unexpectedly high loop resistance. As a result, the bridge wire did not receive sufficient current to heat and initiate ignition. A locally powered, microcontroller-based firing unit at the test stand would have mitigated this issue, but there was insufficient margin to design, test, and validate such a system before hot-fire. In hindsight, this highlighted a critical lesson: <strong>ignition systems should be electrically isolated, locally powered, and tested under representative field conditions</strong>.</p>
+      <div class="gallery" style="margin:36px 0">
+        ${fig('images/hrpg_ignitor/Screenshot 2026-07-13 104121.png','Model rocket igniter anatomy')}
+      </div>
+      <p>While the ignitor was a failure mode, the post-test FMEA revealed the primary failure mode was in the main valve assembly (MVA). The MVA used two modified manual ball valves actuated via a pneumatic piston. Although the mechanism functioned during ambient bench testing, several latent risks became evident:</p>
+      <ul>
+        <li>The LOX valve body was brass, which is poorly suited for cryogenic oxygen service and likely seized due to thermal contraction and material incompatibility.</li>
+        <li>The custom mechanical linkage introduced friction, reducing the effective actuation stroke of the piston.</li>
+        <li>A full cryogenic actuation test was never performed, as facility constraints limited repeated LOX operations. As a result, the first true thermal shock event occurred during the live hot-fire, where the valve locked in place.</li>
+      </ul>
+      <div class="gallery" style="margin:36px 0">
+        ${fig('images/hrpg_ignitor/Screenshot 2026-07-13 104131.png','Main valve assembly: modified ball valves driven by a pneumatic piston. The primary failure mode identified in the post-test FMEA')}
+      </div>
+      <p>Post-test review revealed that commercial off-the-shelf 3-way and 5-way pneumatic valves were available that would have eliminated the custom linkage entirely and significantly improved reliability.</p>
+      <p>Taken together, the failed hot-fire was a clear demonstration of the importance of component selection, cryogenic compatibility, and a <strong>test-as-you-fly philosophy</strong> in propulsion systems. While the engine did not ignite, the test provided critical validation of the feed system and exposed failure modes that directly informed subsequent design decisions.</p>
+    </div>
+
+    <div class="gallery reveal">
+      ${fig('images/hrpg_ignitor/Screenshot 2026-07-13 104022.png','The team. 500 lbf LOX/ethanol static fire test, Avon, CT')}
+    </div>
+
+    ${nextProj('igniter')}
+  </div></section>`
+},
+{
+  slug:'muscle-fatigue',
+  when:'Spring 2026',
+  title:'Muscle Fatigue Detection with Ultrasound & EMG',
+  role:'Echogenicity Lead',
+  thumb:'es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image3.jpg',
+  short:'A semester-long ES227 Medical Device Design team project: detecting muscle fatigue non-invasively with sparse A-mode ultrasound and EMG, toward a wearable. I led the echogenicity analysis — my first time with biomedical signals and data acquisition.',
+  html:()=>`
+  <section><div class="container">
+    <span class="back-link reveal" onclick="go('home','projects')">All projects</span>
+    <div class="reveal"><div class="eyebrow">ES227 · Medical Device Design</div>
+    <h2 class="big">Muscle Fatigue Detection Using Sparse Ultrasound &amp; EMG</h2>
+    <div class="datesub">Spring 2026 · Semester-long team project</div></div>
+
+    ${skillsBar('Echogenicity analysis','Signal processing','Data acquisition','A-mode ultrasound','sEMG','MATLAB','Python')}
+
+    <div class="prose full reveal" style="margin-top:36px">
+      <p>This was a <strong>semester-long team project</strong> for ES227 (Medical Device Design), built around a deceptively hard question: can you measure how fatigued a specific muscle is, objectively, without a lab full of equipment? Muscle fatigue matters everywhere from athletic training to rehabilitation to ergonomics — a fatigued muscle loses force capacity and becomes more injury-prone — but the usual signs (perceived effort, technique breakdown, rep failure) don't reveal the local mechanical state of the muscle itself.</p>
+      <p>Our four-person team set out to detect fatigue in the <strong>biceps brachii non-invasively</strong>, building the algorithmic foundation for a future <strong>wearable device that pairs sparse A-mode ultrasound with EMG</strong>. Rather than claim a finished product, we developed and validated the signal-processing pipelines such a device would run, checking them against a dynamometer as ground truth.</p>
+      <p>It was also my <strong>first time working with biomedical systems, physiological signals, and data acquisition</strong> — a completely different world from the rockets and satellites I'd built before. We designed and built the whole thing ourselves over one semester, so it taught me as much about <strong>project design and holding a strict timeline</strong> as it did about signal processing.</p>
+    </div>
+
+    <div class="doc-links reveal">
+      <a class="doc-card" href="es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx.pdf" target="_blank" rel="noopener">
+        <b>Final Report</b><span>Full write-up — methods, analysis, and results (PDF)</span>
+      </a>
+      <a class="doc-card" href="es227/%5BES227%5D%20Final%20Presentation%20Outline.pptx" target="_blank" rel="noopener">
+        <b>Final Presentation</b><span>Project presentation deck (PPTX)</span>
+      </a>
+    </div>
+
+    <div class="row reveal">
+      <div class="txt prose">
+        <div class="eyebrow">The problem</div>
+        <h2 class="big" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">Why fatigue is hard to measure</h2>
+        <p>Fatigue is a mix of <strong>central</strong> effects (reduced neural drive) and <strong>peripheral</strong> effects inside the muscle: metabolite build-up, impaired calcium handling, cross-bridge dysfunction, and reduced stiffness. A fresh muscle contracts quickly and consistently; a fatigued one responds more slowly and its tissue behaves differently.</p>
+        <p>Every existing tool captures only part of that. Surface EMG reads electrical activation but is thrown off by sweat, electrode placement, and crosstalk. NIRS gives metabolic context but limited depth. Force/torque is a clean ground truth but needs a benchtop dynamometer. B-mode ultrasound shows rich structure but is bulky and compute-heavy. We chose <strong>sparse A-mode ultrasound</strong> — a one-dimensional depth signal — as a lower-data, wearable-friendly middle ground, paired with EMG.</p>
+      </div>
+      <div class="med">${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image4.png','Pre-fatigue vs. post-fatigue muscle response — altered calcium handling and cross-bridge behavior')}</div>
+    </div>
+
+    <div class="row flip reveal">
+      <div class="txt prose">
+        <div class="eyebrow">The approach</div>
+        <h2 class="big" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">Two signals, one ground truth</h2>
+        <p>We pulled two complementary fatigue features from the same muscle. <strong>Echogenicity</strong> tracks how the ultrasound backscatter inside a muscle region of interest changes as the muscle fatigues. <strong>Electromechanical delay (EMD)</strong> measures the time lag between electrical activation (EMG) and the mechanical response the ultrasound detects — a delay that grows as muscle tires.</p>
+        <p>Both were validated against a <strong>dynamometer</strong>. We ran a standardized protocol of repeated maximum voluntary isometric contractions (MVICs) and fatiguing exercise while recording synchronized ultrasound (Optel), EMG (Delsys), and torque (ADInstruments PowerLab), all aligned to a hardware trigger so activation, tissue response, and force output line up in the same window.</p>
+      </div>
+      <div class="med">${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image7.png','Test protocol on the HUMAC dynamometer — rest, submaximal holds, a fatiguing block, and MVIC windows, repeated four times')}</div>
+    </div>
+
+    <div class="gallery reveal">
+      ${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image2.png','Instrumentation — Delsys EMG, Optel ultrasound, and the ADInstruments PowerLab/dynamometer, all synchronized on a shared hardware trigger')}
+    </div>
+
+    ${WAVE('#efeeea')}
+
+    <div class="prose full reveal" style="margin:20px 0 10px">
+      <div class="eyebrow">My Contribution</div>
+      <h2 class="big" style="font-size:clamp(1.9rem,4vw,3rem)">Echogenicity</h2>
+      <p><strong>Echogenicity</strong> is how strongly tissue echoes ultrasound back to the probe — how "bright" it reads. Muscle and its connective tissue scatter sound differently, and as a muscle fatigues, that backscatter within a fixed region of interest (ROI) shifts. That makes the <strong>average ultrasound intensity inside the ROI a non-invasive proxy</strong> for the muscle's changing mechanical state.</p>
+    </div>
+
+    <div class="row reveal">
+      <div class="txt prose">
+        <h2 class="big" style="font-size:1.8rem">Building the pipeline</h2>
+        <p>I <strong>developed the echogenicity pipeline end to end</strong>. For each trial I selected the time window around the relevant MVIC or rest period, converted the raw RF ultrasound signal into an envelope / M-mode representation, and defined a consistent ROI in the biceps. The tricky part is the ROI: I used a <strong>muscle boundary tracking algorithm (MBTA)</strong> to find the lower biceps boundary and an assumed superficial boundary around 5&nbsp;mm, so the ROI followed the actual muscle rather than a fixed box.</p>
+        <p>From there I averaged the signal intensity inside the ROI and compared it across trials, plotting mean ROI echogenicity against MVIC and trial number to see whether the ultrasound signal tracked the measured loss of force.</p>
+      </div>
+      <div class="med">${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image5.png','B-mode and M-mode reference — biceps, humerus shadow, the A-mode sampling line, and the MBTA-tracked muscle boundary')}</div>
+    </div>
+
+    <div class="row flip reveal">
+      <div class="txt prose">
+        <h2 class="big" style="font-size:1.8rem">The result</h2>
+        <p>Across the fatiguing trials, <strong>mean ROI echogenicity rose as MVIC fell</strong> — exactly the direction you'd expect if the ultrasound signal reflects fatigue-related decline in force capacity. A polynomial fit to the pooled data reached an <strong>adjusted R&sup2; of 0.9197</strong>, a strong relationship for a first-pass, non-invasive measure.</p>
+        <p>That's the core evidence that echogenicity can serve as a usable fatigue feature, and it's the piece I owned from raw signal to final plot.</p>
+      </div>
+      <div class="med">${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image3.jpg','Mean ROI echogenicity vs. MVIC — as MVIC falls, echogenicity rises; polynomial fit, adjusted R² = 0.9197')}</div>
+    </div>
+
+    <div class="gallery reveal">
+      ${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image9.jpg','Echogenicity over trials in the MBTA-tracked ROI — mean ROI intensity climbs from 8.6 mV to 12.0 mV as the muscle fatigues')}
+    </div>
+
+    <div class="prose full reveal" style="margin-top:30px">
+      <h2 class="big" style="font-size:1.8rem;margin-bottom:14px">Working across the team</h2>
+      <p>Beyond echogenicity I worked on the project as a whole — helping run the experimental setup and data-collection sessions, and supporting the <strong>electromechanical delay</strong> side, where the challenge is synchronizing torque, EMG, and ultrasound and detecting each signal's onset cleanly. The EMD results were more mixed: two of three subjects followed the expected within-subject trend, while one reversed, which we traced to boundary-tracking error in the ultrasound onset.</p>
+      <p>The honest takeaway we wrote up is that this is a <strong>validated algorithmic foundation, not a finished clinical device</strong>. Its robustness still depends on synchronization, boundary tracking, ROI selection, sensor placement, and subject-to-subject variation — all things a real wearable would have to nail down with more participants and a proper fixation and placement guide.</p>
+      <p>Learning to work with a biomedical DAQ chain for the first time — aligning sensors to a trigger, taming noisy physiological signals, and building an analysis pipeline I could actually trust — was the most valuable part of the project for me. Full methodology and results are in the report and presentation linked above.</p>
+    </div>
+
+    <div class="gallery reveal">
+      ${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image8.png','EMD pipeline — synchronize torque, EMG, and ultrasound, detect each onset, then visualize the aligned windows')}
+      ${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image1.png','EMD across trials — torque, EMG, and A-mode ultrasound aligned to the trigger for onset detection')}
+      ${fig('es227/Muscle%20Fatigue%20Final%20Report%20Draft.docx/images/image6.png','EMD across subjects — EMG-to-torque vs. EMG-to-ultrasound delay against %MVIC; two of three followed the expected trend')}
+    </div>
+
+    ${nextProj('muscle-fatigue')}
+  </div></section>`
+},
+{
+  slug:'turf-wars',
+  hidden:true, /* TODO: unhide once fully developed */
+  when:'Jan — Apr 2024',
+  title:'LeBot James — Turf Wars Robot',
+  role:'Team Leader · Designer',
+  thumb:'images/logo_2.png',
+  short:'Tennis-ball-collecting robot for the ES51 Turf Wars competition — 2nd place finish, then mentored a team to another 2nd place.',
+  html:()=>`
+  <section><div class="container">
+    <span class="back-link reveal" onclick="go('home','projects')">All projects</span>
+    <div class="reveal"><div class="eyebrow">ES51 · Turf Wars Competition</div>
+    <h2 class="big">LeBot James</h2>
+    <div class="datesub">January to April 2024 · 2nd Place</div></div>
+    ${skillsBar('Mechanical design','Team coordination','Rapid iteration','CAD','FDM printing','Mechatronics')}
+    <div class="prose full reveal" style="margin-top:36px">
+      <p>LeBot James is a tennis-ball-collecting robot built for the ES51 <strong>Turf Wars competition</strong> — a head-to-head contest where robots race to gather as many balls as possible. We secured a <strong>2nd place finish in Spring 2024</strong>.</p>
+      <p>The intake and hopper geometry were designed for rapid, jam-free ball capture at speed, with a drivetrain tuned for the traction limits of turf. Rapid prototyping via FDM printing let us iterate the intake through multiple versions on a competition timescale.</p>
+      <p>After the competition, I <strong>mentored a team that also achieved 2nd place</strong> in the subsequent competition.</p>
+    </div>
+    ${nextProj('turf-wars')}
+  </div></section>`
+},
+{
+  slug:'titanium-welding',
+  hidden:true, /* TODO: unhide once fully developed */
+  when:'Sep — Dec 2024',
+  title:'Titanium Welding — Post-Weld Heat Treatment for Fatigue',
+  role:'Project Engineer',
+  thumb:'',
+  short:'Optimizing post-weld heat treatment of TIG-welded titanium to maximize fatigue resistance in high-stress applications (ES192).',
+  html:()=>`
+  <section><div class="container">
+    <span class="back-link reveal" onclick="go('home','projects')">All projects</span>
+    <div class="reveal"><div class="eyebrow">ES192 · Materials Engineering</div>
+    <h2 class="big">Post-Weld Heat Treatment for Fatigue Resistance</h2>
+    <div class="datesub">September to December 2024</div></div>
+    ${skillsBar('Welding engineering','Heat treatment','Fatigue analysis','TIG welding','Metallography')}
+    <div class="prose full reveal" style="margin-top:36px">
+      <p>Welding creates residual stresses and altered microstructures in the heat-affected zone — the weak points where fatigue cracks begin. This project systematically <strong>optimized post-weld heat treatment (PWHT) parameters</strong> for TIG-welded titanium to maximize <strong>fatigue resistance in high-stress applications</strong>.</p>
+      <p>Titanium is notoriously unforgiving to weld: above roughly 500&nbsp;°C it aggressively absorbs oxygen, nitrogen, and hydrogen from the atmosphere, embrittling the joint. The work drew on welding engineering literature, ASTM titanium standards (B265, B862), and titanium metallography references to define shielding practice, treatment temperatures, and evaluation methods.</p>
+      <p>The study correlated fatigue performance with microstructural changes across a matrix of heat treatment cycles, converging on parameters that balance residual stress relief against strength retention.</p>
+    </div>
+    ${nextProj('titanium-welding')}
+  </div></section>`
+},
+{
+  slug:'uhs-sintering',
+  hidden:true, /* TODO: unhide once fully developed */
+  when:'May — Jul 2024',
+  title:'Ultra-fast High-temperature Sintering (UHS) System',
+  role:'Designer & Builder · Clarke Group',
+  thumb:'',
+  short:'A Joule-heating sintering system reaching 2500 °C — cutting ceramic sintering time from hours to seconds.',
+  html:()=>`
+  <section><div class="container">
+    <span class="back-link reveal" onclick="go('home','projects')">All projects</span>
+    <div class="reveal"><div class="eyebrow">Clarke Materials Group · Harvard SEAS</div>
+    <h2 class="big">Ultra-fast High-temperature Sintering</h2>
+    <div class="datesub">May to July 2024</div></div>
+    ${skillsBar('System design','High-temp materials','Instrumentation','Joule heating','Carbon felt','DAQ')}
+    <div class="prose full reveal" style="margin-top:36px">
+      <p>Conventional ceramic sintering means hours in a furnace. I <strong>designed and implemented an Ultra-fast High-temperature Sintering (UHS) system</strong> that compresses that to <strong>seconds</strong> — sandwiching green ceramic between carbon felt strips and driving current through them, using <strong>Joule heating to reach temperatures up to 2500&nbsp;°C</strong> almost instantly.</p>
+      <p>The build involved designing the electrical architecture to deliver controlled high current through the felt elements, engineering fixturing and thermal management to survive repeated extreme-temperature cycles, and instrumenting the system for repeatable sintering profiles.</p>
+      <p>UHS enables rapid iteration in ceramics research — screening compositions in minutes rather than days — and its extreme heating rates can freeze in microstructures conventional furnaces can't reach. The system now supports the Clarke Group's thermal materials research.</p>
+    </div>
+    ${nextProj('uhs-sintering')}
+  </div></section>`
+},
+{
+  slug:'ev-fsae',
+  hidden:true, /* TODO: unhide once fully developed */
+  when:'Jan 2024 — Feb 2025',
+  title:'Electric Go-Kart & Formula Student',
+  role:'Mechanical Team Lead Engineer',
+  thumb:'',
+  short:"Converted a gas go-kart to full electric, then co-founded Harvard's first Formula Student team for FSAE 2025.",
+  html:()=>`
+  <section><div class="container">
+    <span class="back-link reveal" onclick="go('home','projects')">All projects</span>
+    <div class="reveal"><div class="eyebrow">Harvard Undergraduate Automotive Society</div>
+    <h2 class="big">Electric Go-Kart &amp; Formula Student</h2>
+    <div class="datesub">January 2024 to February 2025</div></div>
+    ${skillsBar('EV integration','Powertrain design','Weight distribution','CAD','Fabrication','Team building')}
+    <div class="prose full reveal" style="margin-top:36px">
+      <p>Transitioned a <strong>gas-powered go-kart to a fully electric vehicle</strong> targeting a maximum speed of 30 mph — a complete powertrain swap covering motor selection, battery packaging, and control integration, while optimizing <strong>powertrain efficiency and weight distribution</strong> around the new battery mass.</p>
+      <p>I was also <strong>one of the founding members of Harvard's Formula Student Team</strong>, playing a pivotal role in designing and constructing <strong>Harvard's first Formula Student car</strong> for the 2025 FSAE competition — helping establish the design processes, manufacturing capability, and team structure from zero.</p>
+    </div>
+    ${nextProj('ev-fsae')}
+  </div></section>`
+},
+{
+  slug:'vtol-uav',
+  hidden:true, /* TODO: unhide once fully developed */
+  when:'Jul — Aug 2022',
+  title:'Long-Range VTOL UAVs for Mapping & Delivery',
+  role:'Designer & Builder',
+  thumb:'',
+  short:'Hybrid drones that take off like a helicopter and cruise like a plane — built for mapping and delivery missions.',
+  html:()=>`
+  <section><div class="container">
+    <span class="back-link reveal" onclick="go('home','projects')">All projects</span>
+    <div class="reveal"><div class="eyebrow">Independent Project</div>
+    <h2 class="big">Long-Range VTOL UAVs</h2>
+    <div class="datesub">July to August 2022</div></div>
+    ${skillsBar('Aircraft design','Aerodynamics','Transition control','CAD','Composites','Flight controllers')}
+    <div class="prose full reveal" style="margin-top:36px">
+      <p>Designed and built <strong>long-range VTOL (Vertical Take-Off and Landing) UAVs</strong> for mapping and delivery — hybrid aircraft that lift off vertically like a multirotor, then transition to fixed-wing flight for the range and efficiency a quadcopter can't reach.</p>
+      <p>VTOL capability removes the need for a runway — critical for delivery and field mapping — while fixed-wing cruise provides long-range efficiency, since wings generate lift far more efficiently than rotors. The hardest part is the transition regime, where the aircraft hands off from rotors to wing, demanding careful aerodynamic and control design.</p>
+    </div>
+    ${nextProj('vtol-uav')}
+  </div></section>`
+}
+];
+
+/* next project link (skips hidden deep-dive pages) */
+function nextProj(slug){
+  const vis = projects.filter(p=>!p.hidden);
+  let i = vis.findIndex(p=>p.slug===slug);
+  if(i===-1){ // hidden page: return to its parent's next
+    i = 0;
+  }
+  const n = vis[(i+1)%vis.length];
+  return `<a class="next-proj reveal" onclick="go('project/${n.slug}')">
+    <b>Next project</b><h3>${n.title} →</h3></a>`;
+}
+
+/* ================= HOME ================= */
+function homeHTML(){
+  const cards = projects.filter(p=>!p.hidden).map(p=>`
+    <div class="card reveal" onclick="go('project/${p.slug}')">
+      <div class="card-media">
+        ${p.thumb?`<img src="${p.thumb}" alt="${p.title}" loading="lazy" onerror="this.outerHTML='<div class=ph>${p.title.split('—')[0].trim()}</div>'">`:`<div class="ph">${p.title.split('—')[0].trim()}</div>`}
+      </div>
+      <div class="card-body">
+        <div class="when">${p.when}</div>
+        <h3>${p.title}</h3>
+        <p>${p.short}</p>
+        <span class="more">View project</span>
+      </div>
+    </div>`).join('');
+
+  return `
+  <div class="hero">
+    ${BLOBS}
+    <div class="band-inner">
+      <h1><span class="l"><span>Shriman Jha's</span></span>
+      <span class="l"><span>Engineering Portfolio</span></span></h1>
+    </div>
+    <div class="scroll-arrows" onclick="goSection('about')" title="Scroll down">
+      <svg viewBox="0 0 34 20"><polyline points="3,4 17,16 31,4"/></svg>
+      <svg viewBox="0 0 34 20"><polyline points="3,4 17,16 31,4"/></svg>
+    </div>
+    ${bandWave}
+  </div>
+
+  <section id="about" style="padding-top:110px">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="reveal">
+          <div class="eyebrow">Hello!</div>
+          <p class="about-lede">I'm a <em>senior</em> at Harvard University pursuing a Bachelor's of Science in <em>Mechanical Engineering</em> — drawn to new technologies across different fields, and to concepts I haven't worked on before.</p>
+          <div class="hero-lede">
+            <p>In the past, I've worked on aerospace systems, material science, automotive systems, biomedical systems, environmental engineering, instrumentation design, and more!</p>
+            <p style="margin-top:14px">I'm currently an <em>Experiment Design Intern</em> at <a href="https://reflective.org" target="_blank" style="border-bottom:1px solid var(--muted)">Reflective</a>, working on instrumentation to find and measure sulfur dioxide in the stratosphere while contributing to the team's experiment design work. On campus, I serve as the Project Manager for the <em>Harvard Undergraduate Aerospace Collective</em>, was President of the <em>Harvard Rocket Propulsion Group</em>, and led the mechanical team for a CubeSat with the Harvard Satellite Team — which is currently in orbit! I also do high-temperature materials research in <a href="https://clarke.seas.harvard.edu/" target="_blank" style="border-bottom:1px solid var(--muted)">David R. Clarke's Materials Discovery and Applications Group</a>, alongside plenty of fun projects.</p>
+            <p style="margin-top:14px">I'm currently looking for <strong style="font-weight:500">full-time roles</strong> in engineering*.</p>
+            <p style="margin-top:10px"><small>*H1B sponsorship required, currently on an F1 visa.</small></p>
+          </div>
+          <div class="cta-row">
+            <button class="btn solid" onclick="goSection('projects')">See my projects!</button>
+            <button class="btn" onclick="goSection('contact')">Contact</button>
+          </div>
+        </div>
+        <div class="hero-img reveal">
+          <video autoplay muted loop playsinline
+                 onerror="this.parentElement.style.display='none'"
+                 style="width:100%;height:100%;object-fit:cover;display:block">
+            <source src="videos/mediggingahole.mov" type="video/quicktime">
+            <source src="videos/shrimandigging.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  ${WAVE()}
+
+  <section id="projects" style="padding-top:60px">
+    <div class="container">
+      <div class="eyebrow reveal">Selected Work</div>
+      <h2 class="big reveal">Projects</h2>
+      <!-- <p class="reveal" style="color:var(--muted);max-width:60ch">Click any project for the full story.</p> -->
+      <div class="grid">${cards}</div>
+    </div>
+  </section>
+
+  <section class="contact-sec" id="contact">
+    <div class="eyebrow reveal" style="text-align:center">Contact</div>
+    <h2 class="big reveal" style="max-width:none">Let's build something.</h2>
+    <a class="biglink reveal" href="mailto:sjha@college.harvard.edu">sjha@college.harvard.edu</a>
+    <p class="reveal" style="color:var(--faint);margin-top:22px;font-size:.85rem;letter-spacing:.1em">(857) 757-0386 · CAMBRIDGE, MA</p>
+  </section>
+
+  <footer>
+    <span>© 2026 Shriman Jha. All Rights Reserved.</span>
+    <div class="flinks">
+      <a href="https://www.linkedin.com/in/shrimanjha/" target="_blank">LinkedIn</a>
+      <a href="mailto:sjha@college.harvard.edu">Email</a>
+      <a href="https://www.instagram.com/shrinam.ja/" target="_blank">Instagram</a>
+    </div>
+  </footer>`;
+}
+
+/* ================= PROJECT PAGE WRAPPER ================= */
+function projectHTML(p){
+  return `
+  <div class="band">
+    ${BLOBS}
+    <div class="band-inner">
+      <h1>${p.title}</h1>
+      <div class="band-sub">${p.role} · ${p.when}</div>
+    </div>
+    ${bandWave}
+  </div>
+  ${p.html()}
+  <footer>
+    <span>© 2026 Shriman Jha. All Rights Reserved.</span>
+    <div class="flinks">
+      <a href="https://www.linkedin.com/in/shrimanjha/" target="_blank">LinkedIn</a>
+      <a href="mailto:sjha@college.harvard.edu">Email</a>
+    </div>
+  </footer>`;
+}
+
+/* ================= ROUTER ================= */
+const app = document.getElementById('app');
+let pendingScroll = null;
+
+function render(){
+  const hash = location.hash.replace(/^#\/?/,'') || 'home';
+  let html;
+  if(hash.startsWith('project/')){
+    const p = projects.find(x=>x.slug===hash.split('/')[1]);
+    html = p ? projectHTML(p) : homeHTML();
+  } else html = homeHTML();
+
+  const view = document.createElement('div');
+  view.className='view';
+  view.innerHTML = html;
+
+  const old = app.querySelector('.view');
+  if(old){
+    old.classList.add('leaving'); old.classList.remove('active');
+    setTimeout(()=>{
+      app.innerHTML=''; app.appendChild(view);
+      requestAnimationFrame(()=>requestAnimationFrame(()=>view.classList.add('active')));
+      afterRender();
+    },300);
+  } else {
+    app.appendChild(view);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>view.classList.add('active')));
+    afterRender();
+  }
+}
+
+function afterRender(){
+  observeReveals();
+  if(pendingScroll){
+    const el = document.getElementById(pendingScroll);
+    pendingScroll = null;
+    if(el){ setTimeout(()=>el.scrollIntoView({behavior:'smooth'}),90); return; }
+  }
+  window.scrollTo({top:0,behavior:'auto'});
+}
+
+function go(route, scrollTo){
+  pendingScroll = scrollTo || null;
+  const target = '#/'+route;
+  if(location.hash === target) render();
+  else location.hash = target;
+}
+
+function goSection(id){
+  const hash = location.hash.replace(/^#\/?/,'') || 'home';
+  if(hash!=='home'){ go('home', id); }
+  else{ const el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth'}); }
+}
+
+window.addEventListener('hashchange', render);
+
+/* ================= SCROLL FX ================= */
+function observeReveals(){
+  const io = new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}
+
+const nav = document.getElementById('nav');
+const bar = document.getElementById('progress');
+
+/* ================= MOBILE MENU ================= */
+function toggleMenu(force){
+  const open = typeof force==='boolean' ? force : !nav.classList.contains('menu-open');
+  nav.classList.toggle('menu-open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+  const t = document.getElementById('navToggle');
+  t.setAttribute('aria-expanded', open);
+  t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+}
+/* close the menu when a nav link is tapped */
+document.getElementById('navLinks').addEventListener('click', e=>{
+  if(e.target.tagName==='A') toggleMenu(false);
+});
+/* close with Escape */
+window.addEventListener('keydown', e=>{
+  if(e.key==='Escape' && nav.classList.contains('menu-open')) toggleMenu(false);
+});
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled', window.scrollY>40);
+  const h=document.documentElement;
+  const pct=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+  bar.style.width=(isFinite(pct)?pct:0)+'%';
+},{passive:true});
+
+render();
+</script>
+</body>
+</html>
