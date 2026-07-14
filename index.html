@@ -311,6 +311,10 @@ h2.big{
 .callout p{font-family:var(--serif);font-size:1.25rem;font-style:italic;margin:0}
 .callout small{display:block;font-family:var(--sans);font-style:normal;font-size:.72rem;color:var(--faint);margin-top:4px}
 .fig-cap-vid{font-size:.75rem;color:var(--faint);margin-top:10px;letter-spacing:.05em;text-align:right}
+.launch-video{margin:48px 0;max-width:960px;margin-left:auto;margin-right:auto}
+.launch-video .fig{aspect-ratio:16/9;background:#000}
+.launch-video video{width:100%;height:100%;object-fit:cover;display:block}
+.launch-video figcaption{text-align:center;margin-top:12px}
 
 /* skills */
 .skill-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;margin-top:80px}
@@ -546,6 +550,16 @@ const projects = [
       </div>
       <div class="med">${fig('images/hucsat-cutaway.jpg','HuCSat, fully assembled')}</div>
     </div>
+
+    <figure class="launch-video reveal">
+      <div class="fig">
+        <video controls autoplay muted loop playsinline preload="metadata"
+               onerror="this.closest('.launch-video').style.display='none'">
+          <source src="videos/HUCSat_Launch.mp4" type="video/mp4">
+        </video>
+      </div>
+      <figcaption class="fig-cap">HuCSat deploying from the International Space Station.</figcaption>
+    </figure>
 
     <div class="prose full reveal" style="margin:20px 0 30px">
       <h2 class="big" style="font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:16px">Why it matters</h2>
@@ -1166,26 +1180,111 @@ const projects = [
 },
 {
   slug:'titanium-welding',
-  hidden:true, /* TODO: unhide once fully developed */
-  when:'Sep — Dec 2024',
-  title:'Titanium Welding — Post-Weld Heat Treatment for Fatigue',
-  role:'Project Engineer',
-  thumb:'',
-  short:'Optimizing post-weld heat treatment of TIG-welded titanium to maximize fatigue resistance in high-stress applications (ES192).',
-  html:()=>`
+  when:'Fall 2024',
+  title:'Post-Weld Heat Treatment of Titanium Welds',
+  role:'Materials & Fabrication',
+  thumb:'PROJECT_LL1.230%20-%20ES192%20TITANIUM%20WELDING-20251210T224822Z-1-001/ES%20192%20Final%20Project%20Deliverable/images/After.png',
+  short:'ES192 final project: welding aerospace-grade Ti-6Al-4V and heat-treating it across a range of temperatures to see which leaves the hardest joint. A hands-on materials project that landed on a result the textbook did not predict.',
+  html:()=>{
+    const D='PROJECT_LL1.230%20-%20ES192%20TITANIUM%20WELDING-20251210T224822Z-1-001/ES%20192%20Final%20Project%20Deliverable/';
+    const I=D+'images/';
+    return `
   <section><div class="container">
     <span class="back-link reveal" onclick="go('home','projects')">All projects</span>
-    <div class="reveal"><div class="eyebrow">ES192 · Materials Engineering</div>
-    <h2 class="big">Post-Weld Heat Treatment for Fatigue Resistance</h2>
-    <div class="datesub">September to December 2024</div></div>
-    ${skillsBar('Welding engineering','Heat treatment','Fatigue analysis','TIG welding','Metallography')}
+    <div class="reveal"><div class="eyebrow">ES192 · Materials Selection &amp; Design</div>
+    <h2 class="big">Post-Weld Heat Treatment of Titanium Welds</h2>
+    <div class="datesub">Fall 2024 · Welding aerospace titanium and heat-treating it for hardness</div></div>
+
+    ${skillsBar('Materials selection','TIG welding','Heat treatment','Titanium alloys','Metallography','Hardness testing','Aerospace materials')}
+
     <div class="prose full reveal" style="margin-top:36px">
-      <p>Welding creates residual stresses and altered microstructures in the heat-affected zone — the weak points where fatigue cracks begin. This project systematically <strong>optimized post-weld heat treatment (PWHT) parameters</strong> for TIG-welded titanium to maximize <strong>fatigue resistance in high-stress applications</strong>.</p>
-      <p>Titanium is notoriously unforgiving to weld: above roughly 500&nbsp;°C it aggressively absorbs oxygen, nitrogen, and hydrogen from the atmosphere, embrittling the joint. The work drew on welding engineering literature, ASTM titanium standards (B265, B862), and titanium metallography references to define shielding practice, treatment temperatures, and evaluation methods.</p>
-      <p>The study correlated fatigue performance with microstructural changes across a matrix of heat treatment cycles, converging on parameters that balance residual stress relief against strength retention.</p>
+      <p>Titanium alloy Ti-6Al-4V is the workhorse of aerospace metals. It makes up around 60% of the titanium used in aircraft and 80 to 90% of what goes into airframes, mostly because it is strong, light, and holds up in harsh conditions. The catch is that it is hard to weld. When titanium gets hot it pulls oxygen, nitrogen, and hydrogen straight out of the air and turns brittle, so a weld that looks fine can hide a fragile joint.</p>
+      <p>One way to recover a welded joint is post-weld heat treatment: heating the part, holding it, and cooling it slowly to relieve stress and reshape the microstructure. NASA's guidance puts the best treatment temperature for Ti-6Al-4V between 650 and 750 °C. For our ES192 final project, my partner and I set out to test that directly, welding the alloy and then heat-treating samples across a wide range of temperatures to see which one left the hardest joint. It was hands-on from end to end, from waterjet-cutting coupons to learning to weld titanium cleanly to running the furnace and hardness tester. The full paper is linked below; this is the short version.</p>
     </div>
+
+    <div class="gallery reveal">
+      ${fig('images/about_me.jpg','TIG welding the titanium coupons under an argon shield')}
+    </div>
+
+    <div class="doc-links reveal">
+      <a class="doc-card" href="${D}ES%20192%20Final%20Project%20Paper-2-1.pdf" target="_blank" rel="noopener">
+        <b>Final Report</b><span>Full write-up: methods, results, and discussion (PDF)</span>
+      </a>
+      <a class="doc-card" href="${D}ES%20192.pdf" target="_blank" rel="noopener">
+        <b>Final Presentation</b><span>Project presentation deck (PDF)</span>
+      </a>
+    </div>
+
+    <div class="row reveal">
+      <div class="txt prose">
+        <div class="eyebrow">The hard part</div>
+        <h2 class="big" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">Keeping air off the weld</h2>
+        <p>Titanium is reactive enough when hot that even a little air exposure forms oxides and nitrides on the surface. If the shielding gas does not fully cover the weld, a thin brittle layer called alpha case forms and cracks easily. To keep the air off, we ran argon over the top of the weld and a back purge underneath, building the purge box from a length of square tube capped with steel foil. The tungsten electrode had to be reground constantly, since any contact with the metal contaminated it.</p>
+        <p>The color left behind tells you how well the shielding worked. A straw-gold tint means the weld stayed protected down to about 540 °C and wipes off with a wire brush. Blue means the contamination reached deeper. A chalky white means the weld was badly contaminated while it was still molten. Each sample took about half an hour, and the welds got cleaner as we improved.</p>
+      </div>
+      <div class="med">${fig(I+'Ti_welding.png','TIG welding a titanium coupon on the shielding jig')}</div>
+    </div>
+
+    <div class="gallery reveal">
+      ${fig(I+'Ti_welding_setup.png','The welding jig with the argon back-purge box, clamps, and wire brush')}
+      ${fig(I+'Welded_gold_contamination.png','A gold heat-tint around the weld: light contamination that brushes off')}
+      ${fig(I+'Welded_white_contamination.png','Blue and chalky-white tinting: deeper contamination from insufficient shielding')}
+    </div>
+
+    ${WAVE('#efeeea')}
+
+    <div class="row flip reveal">
+      <div class="txt prose">
+        <div class="eyebrow">The experiment</div>
+        <h2 class="big" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">Six samples, five temperatures</h2>
+        <p>We started from a 12-by-12-inch sheet of Ti-6Al-4V, 1/16 inch thick, waterjet-cut into coupons and TIG-welded into six samples. Five went into the furnace at 300, 500, 700, 900, and 1100 °C, and one stayed unheated as a control. The furnace ramped at a fixed 5 °C per minute. Afterward we measured Rockwell B hardness on each sample, once on the weld itself and once on the flat surface, and compared them against the base sheet at 85.6 HRB.</p>
+      </div>
+      <div class="med">${fig(I+'Ti_in_furnace.png','A welded sample in the furnace for post-weld heat treatment')}</div>
+    </div>
+
+    <div class="prose full reveal" style="margin:20px 0 6px">
+      <div class="eyebrow">Results</div>
+      <h2 class="big" style="font-size:clamp(1.9rem,4vw,3rem)">The textbook was wrong for us</h2>
+    </div>
+
+    <div class="gallery reveal">
+      ${fig(I+'Before.png','The six welded samples before heat treatment','16/9')}
+      ${fig(I+'After.png','The same samples after heat treatment — surface oxidation deepens with temperature','16/9')}
+    </div>
+
+    <div class="row reveal">
+      <div class="txt prose">
+        <p>The hardest surface came from the 300 °C treatment, not the 650 to 750 °C range NASA recommends, and hardness generally dropped as the treatment temperature climbed. The 1100 °C sample was the softest at the weld and came out visibly oxidized. The heat tints above track the same story, from the clean lower-temperature samples to the heavily discolored 1100 °C one.</p>
+      </div>
+      <div class="med">
+        <table class="ptable" style="width:100%">
+          <tr><td>No PWHT (control)</td><td>79.0 / 78.2</td></tr>
+          <tr><td>300 °C</td><td>79.9 / 101.3</td></tr>
+          <tr><td>500 °C</td><td>78.0 / 82.9</td></tr>
+          <tr><td>700 °C</td><td>84.6 / 90.9</td></tr>
+          <tr><td>900 °C</td><td>79.3 / 65.5</td></tr>
+          <tr><td>1100 °C</td><td>61.1 / 81.8</td></tr>
+        </table>
+        <p style="font-size:.8rem;color:var(--faint);margin-top:8px">Rockwell B hardness (HRB), weld / flat surface. The 1100 °C surface read 52.3 HRB where oxidized; base sheet 85.6 HRB before welding.</p>
+      </div>
+    </div>
+
+    <div class="prose full reveal" style="margin-top:20px">
+      <p>The most likely reason is that our furnace atmosphere was not inert. At the higher temperatures the exposed titanium oxidized and embrittled, which pulls hardness down rather than up. The fixed 5 °C per minute ramp also meant the hotter samples effectively soaked longer, giving those changes more time to happen. And hardness is only one measure: the standard temperatures are chosen with toughness and fatigue in mind, not hardness alone, so a low-temperature answer is reasonable for what we actually tested.</p>
+    </div>
+
+    <div class="row flip reveal">
+      <div class="txt prose">
+        <div class="eyebrow">Underneath</div>
+        <h2 class="big" style="font-size:1.8rem">Why temperature matters at all</h2>
+        <p>Under the microscope the samples show titanium's two-phase structure, the alpha and beta phases whose balance shifts with temperature (pure titanium flips between them around 882 °C). That balance is what the heat treatment is really tuning, and it is why small changes in temperature move the mechanical properties around. Following the phase behavior is what connects the color on the surface, the numbers on the hardness tester, and the grain structure in the metallography.</p>
+      </div>
+      <div class="med">${fig(I+'Ti_welded_grainboundary.png','Optical metallography of the titanium, showing grain boundaries and etched features')}</div>
+    </div>
+
     ${nextProj('titanium-welding')}
-  </div></section>`
+  </div></section>`;
+  }
 },
 {
   slug:'uhs-sintering',
