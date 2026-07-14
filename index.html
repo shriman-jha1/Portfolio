@@ -920,6 +920,228 @@ const projects = [
   </div></section>`
 },
 {
+  slug:'walkalong-glider',
+  when:'Spring 2026',
+  title:'Walkalong Glider',
+  role:'Aerodynamics & CFD',
+  thumb:'es220/NBMetadataCache.jpeg',
+  short:'ES220 (Graduate Hydrodynamics) final project: a 0.94 g foam glider that flies at walking pace on the upwash a person makes. I led the CFD and worked through the low-Reynolds aerodynamics with theory, prototyping, video, and COMSOL.',
+  html:()=>`
+  <section><div class="container">
+    <span class="back-link reveal" onclick="go('home','projects')">All projects</span>
+    <div class="reveal"><div class="eyebrow">ES220 · Fluid Dynamics</div>
+    <h2 class="big">Walkalong Glider</h2>
+    <div class="datesub">Spring 2026 · Aerodynamics and stability at low Reynolds number</div></div>
+
+    ${skillsBar('CFD','COMSOL','Fluid dynamics','Aerodynamics','Low-Reynolds flight','Flight stability','SolidWorks','Foam prototyping','Video analysis')}
+
+    <div class="prose full reveal" style="margin-top:36px">
+      <p>A walkalong glider is a foam wing light enough to stay up on the air a person pushes ahead of them as they walk. You hold a board, tilt your hand, or even use your head, and the surface bends the oncoming air upward. The glider sits in that rising air and holds its height next to you for as long as you keep moving. Nothing is thrown and there is no motor; it just needs the upwash.</p>
+      <p>Our ES220 final project started from one question: how does a wing that weighs less than a gram stay in stable flight at walking speed, and what small changes in its shape decide whether it keeps gliding or stalls, dives, or rolls off to one side? To work it out we ran the numbers by hand, built and flew prototypes, measured flights off video, and simulated the airfoil in COMSOL. I led the CFD, which is where a lot of the story ended up.</p>
+    </div>
+
+    <div class="doc-links reveal">
+      <a class="doc-card" href="es220/ES220_Final_Project_Report-1.pdf" target="_blank" rel="noopener">
+        <b>Final Report</b><span>Full write-up: theory, build, results, and simulation (PDF)</span>
+      </a>
+      <a class="doc-card" href="es220/ES%20220%20Final%20Presentation%20-1.pptx" target="_blank" rel="noopener">
+        <b>Final Presentation</b><span>Project presentation deck (PPTX)</span>
+      </a>
+    </div>
+
+    <div class="row reveal">
+      <div class="txt prose">
+        <div class="eyebrow">The idea</div>
+        <h2 class="big" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">Flying on someone's upwash</h2>
+        <p>The glider weighs so little that the lift it needs is small, and the pressure difference across a thin cambered wing can supply it at close to walking speed. The useful distinction is between an unforced glide, where the wing trades height for distance and sinks at some angle, and forced walkalong flight, where the walker's upward airflow makes up for the height the glider would otherwise lose. If the sink is slow enough for the upwash to cancel it, the glider holds level beside you.</p>
+        <p>That only works if the glider is trimmed to a low enough speed that a walking person's flow can keep up with it rather than leave it behind.</p>
+      </div>
+      <div class="med">${fig('es220/Screenshot%202026-05-08%20154735.png','Top, front, and side views of the final glider, a thin cambered wing with dihedral')}</div>
+    </div>
+
+    <div class="row flip reveal">
+      <div class="txt prose">
+        <div class="eyebrow">The regime</div>
+        <h2 class="big" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">Why low Reynolds number is hard</h2>
+        <p>The Reynolds number is the ratio of inertial to viscous forces in a flow. Ours sits around 9,000 to 20,000, well below a bird or a small UAV and far below an airliner. At those values the boundary layer on the wing has little momentum, so it separates from the surface as soon as it meets an adverse pressure gradient. That separation is usually what you are seeing when a light glider flutters, holds a glide for a second, and then drops.</p>
+        <p>Because of that, the design came down to four things that have to work together: low wing loading so it flies slowly, pitch trim and pitch stability, roll stability, and control of separation. Any one of them on its own falls short.</p>
+      </div>
+      <div class="med">${fig('es220/image0.png','Low-Re separation: a sharp leading edge (left) sheds a recirculating low-pressure pocket, while a curved nose (right) keeps the flow attached')}</div>
+    </div>
+
+    ${WAVE('#efeeea')}
+
+    <div class="prose full reveal" style="margin:20px 0 10px">
+      <div class="eyebrow">Designing for stability</div>
+      <h2 class="big" style="font-size:clamp(1.9rem,4vw,3rem)">Small geometry, big consequences</h2>
+      <p>Each stability feature on the glider answers a specific way it failed in testing: rolling off, stalling nose-up, diving, or fluttering. Getting those features right mattered more than adding wing area.</p>
+    </div>
+
+    <div class="row reveal">
+      <div class="txt prose">
+        <h2 class="big" style="font-size:1.8rem">Roll: dihedral and a low center of mass</h2>
+        <p>Both wings sit a few degrees above horizontal. When the glider banks, the lower wing shows more of its area to the horizontal and makes a little more lift, which rights it. The nose weight is bent downward as well, so the center of mass sits below the wing and the glider hangs like a pendulum. That gives a second restoring torque whenever it rolls.</p>
+      </div>
+      <div class="med">${fig('es220/Screenshot%202026-05-08%20164713.png','A few degrees of dihedral, the restoring geometry for roll')}</div>
+    </div>
+
+    <div class="gallery reveal">
+      ${fig('es220/IMG_3465.jpg','The nose weight, a length of nitinol wire, hangs below the wing to drop the center of mass')}
+      ${fig('es220/IMG_3466.jpg','Front weight set ahead of the aerodynamic center for pitch stability')}
+    </div>
+
+    <div class="row flip reveal">
+      <div class="txt prose">
+        <h2 class="big" style="font-size:1.8rem">Pitch: forward center of mass and trailing camber</h2>
+        <p>With the center of mass set ahead of the aerodynamic center, a change in lift turns into a restoring torque. A gust that raises the nose gets pushed back down, and the reverse holds too. Camber at the trailing edge adds a little drag at the back that trims the nose up without taking away lift. It slows the glider and lets the underside meet more of the oncoming air, which shallows the glide.</p>
+      </div>
+      <div class="med">${fig('es220/Screenshot%202026-05-08%20172751.png','Trailing-edge camber, the aft lift-up that trims the nose for a shallower glide')}</div>
+    </div>
+
+    <div class="row reveal">
+      <div class="txt prose">
+        <h2 class="big" style="font-size:1.8rem">Separation: turn the nose down</h2>
+        <p>The change that finally got the lightest gliders flying was bending the leading edge down slightly so it lined up with the incoming streamlines. A blunt edge throws off a small recirculating pocket of low pressure, and at this Reynolds number that pocket pulls the flow off the wing and spreads downstream until the glider can no longer fly. A curved nose lets the air settle onto the surface instead, and the pressure stays clean along the wing.</p>
+      </div>
+      <div class="med">${fig('es220/straightvsnose.png','COMSOL pressure fields: a pitched-down nose (left) holds an even low-pressure region, while a straight edge (right) loses pressure near the tips')}</div>
+    </div>
+
+    ${WAVE('#efeeea')}
+
+    <div class="row reveal">
+      <div class="txt prose">
+        <div class="eyebrow">Results</div>
+        <h2 class="big" style="font-size:clamp(1.9rem,4vw,3rem)">Measuring the flight</h2>
+        <p>We read the glider's performance off video. An 18-inch drop over 90 inches of travel works out to a glide angle of 11.3°, and the light model flew at 2.2 m/s. Putting those into the steady-glide equations gives the values below.</p>
+        <table class="ptable" style="margin-top:20px">
+          <tr><td>Glider mass (1&nbsp;mm EPS foam)</td><td>0.94 g</td></tr>
+          <tr><td>Projected wing area</td><td>0.011 m&sup2;</td></tr>
+          <tr><td>Glide speed (walking pace)</td><td>2.2 m/s</td></tr>
+          <tr><td>Glide ratio (L/D)</td><td>5 : 1</td></tr>
+          <tr><td>Lift coefficient, C<sub>L</sub></td><td>0.265</td></tr>
+          <tr><td>Drag coefficient, C<sub>D</sub></td><td>0.053</td></tr>
+          <tr><td>Reynolds number</td><td>≈ 9,400</td></tr>
+        </table>
+      </div>
+      <div class="med">${fig('es220/NBMetadataCache.jpeg','Overlaid video frames of a test glide against an 18-by-9 inch grid, t = 0 to t = 1.03 s')}</div>
+    </div>
+
+    <div class="prose full reveal" style="margin-top:40px">
+      <h2 class="big" style="font-size:1.8rem;margin-bottom:14px">Light versus heavy</h2>
+      <p>At 5:1 and 2.2 m/s the light glider was easy to fly by hand, or hands-free using your head to make the upwash. A heavier build at 1.68 g with the same area flew at 2.8 m/s and came down at a steeper angle. That follows the theory, since more mass per unit area needs more dynamic pressure. Flying it meant close to a jog and a taller surface to stay under, so it was worse for walkalong flight, even though its lift coefficient sat closer to the simulation.</p>
+    </div>
+
+    <div class="prose full reveal" style="margin-top:30px">
+      <div class="eyebrow">Simulation</div>
+      <h2 class="big" style="font-size:clamp(1.9rem,4vw,3rem)">CFD in COMSOL</h2>
+      <p>I built the final airfoil in COMSOL to check whether it made lift and drag close to what we measured, and to see how the flow changed with angle of attack. The CAD airfoil went into a fluid model, and I used the measured airspeed and glide angle as the reference conditions. Most of my time on the project went here.</p>
+      <p>The baseline case came out at C<sub>L</sub> ≈ 0.512 and C<sub>D</sub> ≈ 0.008, against the measured C<sub>L</sub> ≈ 0.265 and C<sub>D</sub> ≈ 0.0531. So the model read high on lift and low on drag. That is about what I expected. The simulation uses a clean geometry with smooth surfaces and steady boundary conditions, while the real glider is hand-built EPS foam that is not perfectly symmetric, flying in an unsteady three-dimensional upwash. I would not trust the absolute drag from the model on its own.</p>
+    </div>
+
+    <div class="row reveal">
+      <div class="txt prose">
+        <h2 class="big" style="font-size:1.8rem">Sweeping angle of attack</h2>
+        <p>I swept the angle of attack through 0°, 5°, 11°, 15°, and 20°. Lift climbed with angle: C<sub>L</sub> ran 0.176, 0.486, 0.512, 0.674, and 0.802. Drag came out 0.042, 0.052, and 0.009, then went slightly negative at the last two angles, −0.003 and −0.011.</p>
+        <p>Those negative drag values are not physical. They tell me the force integration is sensitive to the boundary conditions and the pressure reference at high angle, and in practice they land near where a real wing stalls, so I read them as the angles our glider would not actually fly at. For comparing against the flights, the shape of the flow and how it shifted with geometry held up better than the exact drag numbers. The heavier glider's measured lift landed closer to the model, but mostly because it flew faster and steeper, which changed its angle of attack and raised its Reynolds number enough to keep the flow attached a little better.</p>
+      </div>
+      <div class="med">${fig('es220/velocityprofile1.png','Velocity-magnitude fields across the angle-of-attack sweep, 0° to 20°')}</div>
+    </div>
+
+    <div class="row flip reveal">
+      <div class="txt prose">
+        <h2 class="big" style="font-size:1.8rem">Pressure across the span and the tips</h2>
+        <p>The clearest result from the simulation was why the nose and tip shape matter. With the leading edge pitched down, the upper surface held a low-pressure region that stayed fairly even across the span, and the underside kept a continuous higher-pressure region, so the wing made lift consistently from the middle out to the tips. With a straight edge the pressure recovered near the tips, which weakened the difference between top and bottom there and opened a path for high-pressure air to leak around the tip. That leakage feeds a tip vortex and adds induced drag, and at low Reynolds number it reaches across the whole small wing.</p>
+        <p>This lined up with what we saw in the air. The pitched-down nose kept the flow attached and held a cleaner pressure difference, which helped lift and roll stability at the same time.</p>
+      </div>
+      <div class="med">${fig('es220/pressuregradient.png','Surface pressure distribution across the same sweep, with suction growing as angle of attack increases')}</div>
+    </div>
+
+    <div class="prose full reveal" style="margin-top:40px">
+      <h2 class="big" style="font-size:1.8rem;margin-bottom:14px">What I took away</h2>
+      <p>A walkalong glider behaves differently from a scaled-down airplane. At walking speed and low Reynolds number its flight comes from a balance between weight, lift, pitch trim, roll stability, and keeping the flow attached, and those trade against each other. The design that worked did not make the most lift; it found a slow, stable operating point where the flow stayed attached. Coming from rockets and satellites, the part I liked most was learning to read a flow field and tie it back to something I could hold in my hand and fly.</p>
+    </div>
+
+    ${nextProj('walkalong-glider')}
+  </div></section>`
+},
+{
+  slug:'contrails',
+  when:'Fall 2025',
+  title:'Modeling Contrails Across Scales',
+  role:'Modeling & Simulation',
+  thumb:'ESE129/figure1.png',
+  short:'ESE129 final project: a three-tier model of how aircraft contrails form and how long they last, linking a reduced-order plume model and COMSOL simulations to real ERA5 weather data. My first work in atmospheric physics and first time learning to use these atmospheric modeling tools!',
+  html:()=>`
+  <section><div class="container">
+    <span class="back-link reveal" onclick="go('home','projects')">All projects</span>
+    <div class="reveal"><div class="eyebrow">ESE129 · Climate &amp; Atmospheric Physics Laboratory</div>
+    <h2 class="big">Modeling Contrails Across Scales</h2>
+    <div class="datesub">What makes an aircraft contrail vanish, or last for hours</div></div>
+
+    ${skillsBar('Atmospheric physics','Contrail modeling','CFD','COMSOL','MATLAB','Python','Numerical methods','ERA5 reanalysis','pycontrails')}
+
+    <div class="prose full reveal" style="margin-top:36px">
+      <p>Contrails are the thin ice-cloud lines that follow aircraft. They form when hot, wet engine exhaust hits the very cold air high up and freezes into ice crystals. Most fade in seconds, but in the right air they hang around for hours and spread into thin cirrus sheets. Those are the ones that matter for climate: a high, cold cloud traps heat leaving the ground, so on balance contrails warm the planet.</p>
+      <p>I wanted to know what makes a contrail vanish or last, so for my ESE129 final project I modeled it at three levels of detail at once, a quick plume model in MATLAB, a resolved 2D fluid simulation in COMSOL, and an analysis of real weather data (ERA5) through the pycontrails toolkit. Getting all three to tell the same story was the point. It was my first project in atmospheric physics and easily the most involved thing I have built, since I was learning the physics as I went. The full write-up is in the report below; this page is the short version.</p>
+    </div>
+
+    <div class="doc-links reveal">
+      <a class="doc-card" href="ESE129/ESE_Final_Project.pdf" target="_blank" rel="noopener">
+        <b>Final Report</b><span>Full write-up: the three models, methods, and results (PDF)</span>
+      </a>
+    </div>
+
+    <div class="row reveal">
+      <div class="txt prose">
+        <div class="eyebrow">Why they matter</div>
+        <h2 class="big" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">A cold cloud acts like a blanket</h2>
+        <p>Anything warm radiates heat, and the rate climbs steeply with temperature. The ground is warm and radiates a lot; a contrail near the top of the troposphere is cold and radiates little. When it spreads over warmer ground, the heat escaping to space is set by the cold cloud rather than the surface, so less gets out. That trapped heat is the warming effect. Contrails bounce a little sunlight back too, but the heat-trapping usually wins, especially at night.</p>
+      </div>
+      <div class="med">${fig('ESE129/figure1.png','A contrail lets most sunlight through but absorbs and re-emits the heat rising from the surface, like a thin blanket high in the atmosphere')}</div>
+    </div>
+
+    <div class="prose full reveal" style="margin-top:10px">
+      <p>Whether a contrail lasts depends on three things about the air it sits in: how humid it is relative to ice (above ice saturation, crystals grow instead of evaporating), how strongly the atmosphere resists vertical mixing, and how much the wind changes with height, which stretches and dilutes the plume. These play out over tens of meters, far below what a global weather model can resolve, which is why I modeled it at several scales.</p>
+    </div>
+
+    ${WAVE('#efeeea')}
+
+    <div class="row reveal">
+      <div class="txt prose">
+        <div class="eyebrow">Tier 1 · MATLAB</div>
+        <h2 class="big" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">A fast plume model</h2>
+        <p>The MATLAB model is the quick one, simple enough to run thousands of cases. It follows a slice of the contrail as it spreads and either grows or sublimates depending on humidity, and reports how long the core survives. The headline is a sharp switch right at ice saturation: below it the contrail is gone in minutes, above it lifetimes shoot up. Stability and shear matter most right near that edge, and mapping humidity against stability turns that into a clean persistence phase diagram.</p>
+      </div>
+      <div class="med">${fig('ESE129/4.jpg','Persistence phase map over humidity and stability, with the 10-minute lifetime contour marking the transition')}</div>
+    </div>
+
+    <div class="row flip reveal">
+      <div class="txt prose">
+        <div class="eyebrow">Tier 2 · COMSOL</div>
+        <h2 class="big" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">Resolving the plume</h2>
+        <p>The simple model hides the plume's structure inside a single mixing number. To check that this is fair, I ran a resolved 2D simulation in COMSOL that solves the actual flow and lets the plume stretch under shear instead of just spreading. Watching it dilute downstream, I could measure the mixing rate directly and compare it against what the MATLAB model assumes. Where they match, the simple picture holds.</p>
+      </div>
+      <div class="med">${fig('ESE129/Untitled.gif','COMSOL simulation: the exhaust plume advects downstream and dilutes as it spreads')}</div>
+    </div>
+
+    <div class="row reveal">
+      <div class="txt prose">
+        <div class="eyebrow">Tier 3 · ERA5 + pycontrails</div>
+        <h2 class="big" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">Does this air exist?</h2>
+        <p>A model only matters if the atmosphere actually reaches these conditions, so I pulled real reanalysis weather over Europe and computed the same humidity, stability, and shear. The air that can hold a lasting contrail turns out to be rare and stringy, thin filaments in a lot of dry air. Along one flight track only about 4% of the route qualified. Scoring the track from all three ingredients reproduced the models' story, with strong shear killing persistence and the best conditions where humid air meets gentle mixing.</p>
+      </div>
+      <div class="med">${fig('ESE129/RHi_250hPa_20241010T00Z.png','Humidity over ice at cruise altitude over Europe. The yellow-green ice-supersaturated air forms narrow filaments, not broad regions')}</div>
+    </div>
+
+    <div class="prose full reveal" style="margin-top:40px">
+      <h2 class="big" style="font-size:1.8rem;margin-bottom:14px">What I took away</h2>
+      <p>All three tiers land on the same two-part rule: the air first has to be humid enough over ice for a contrail to exist, which is rare, and then how long it lasts comes down to how fast shear and stability mix it away. What I valued most was the process, taking a field I knew nothing about, learning the physics, and building three models at different fidelities that had to agree. It pushed my numerical and CFD work further than anything I had done before.</p>
+    </div>
+
+    ${nextProj('contrails')}
+  </div></section>`
+},
+{
   slug:'turf-wars',
   hidden:true, /* TODO: unhide once fully developed */
   when:'Jan — Apr 2024',
